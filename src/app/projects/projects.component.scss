@@ -23,8 +23,7 @@
     position: absolute;
 
     &.one {
-      top: 140px;
-      //left: 100%;
+      top: 150px;
       transform: scale(2);
       img {
         width: calc(414px);
@@ -44,7 +43,6 @@
     &.three {
       top: 630px;
       transform: scale(2);
-      //left: 312px;
 
       img {
         width: calc(380px);

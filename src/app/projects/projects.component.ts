@@ -36,7 +36,7 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 })
 export class ProjectsComponent implements OnInit {
   @ViewChild("projectsText", { static: true }) projectsText: ElementRef;
-  @ViewChildren("projects") projects: ElementRef;
+  @ViewChildren("projects") projects: QueryList<any>;
   images = [
     "https://via.placeholder.com/460",
     "https://via.placeholder.com/460",
@@ -65,9 +65,10 @@ export class ProjectsComponent implements OnInit {
     this.height = window.innerHeight;
     this.elementChildren = this.projects.last.nativeElement.children;
 
-    const projectsTextWidth = this.projectsText.nativeElement.getBoundingClientRect();
-    console.log(this.width);
-    console.log(projectsTextWidth);
+    const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
+
+    const finalProjectTextWidth: any = (projectsText.width * 0.3).toFixed(0);
+    console.log(this.projectsText.nativeElement.getBoundingClientRect());
 
     let tweens = {
       startTween: TweenMax.to(".projects-text", 500, {
@@ -82,7 +83,7 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: "210%",
+            x: this.width / 2 + finalProjectTextWidth / 2 - 60,
             ease: "Linear.easeNone",
           }
         ),
@@ -93,7 +94,11 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: "90%",
+            x:
+              this.width / 2 -
+              finalProjectTextWidth / 2 -
+              this.elementChildren[2].clientWidth +
+              60,
             ease: "Linear.easeNone",
           }
         ),
@@ -107,8 +112,11 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: "80%",
-            y: "5%",
+            x:
+              this.width / 2 -
+              finalProjectTextWidth / 2 -
+              this.elementChildren[3].clientWidth / 2,
+            y: 0,
             ease: "Linear.easeNone",
           }
         ),
@@ -119,13 +127,25 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: "195%",
-            y: "15%",
+            x: this.width / 2 + finalProjectTextWidth / 4 - 60,
+            y: 0,
             ease: "Linear.easeNone",
           }
         ),
       ],
     };
+
+    //containeing
+    new ScrollMagic.Scene({
+      triggerElement: ".projects",
+      duration: 3100, // the scene should last for a scroll distance of 100px
+      offset: 550, // start this scene after scrolling for 50px
+    })
+      .addIndicators()
+      .setTween(tweens.startTween)
+
+      .setPin(".projects-text, .projects") // pins the element for the the scene's duration
+      .addTo(this.controller); // assign the scene to the controller
 
     // text scale
     new ScrollMagic.Scene({
@@ -136,7 +156,7 @@ export class ProjectsComponent implements OnInit {
       .addIndicators()
       .setTween(tweens.startTween)
 
-      .setPin(".projects-text, .projects") // pins the element for the the scene's duration
+      //.setPin(".projects-text, .projects") // pins the element for the the scene's duration
       .addTo(this.controller); // assign the scene to the controller
 
     // project image
@@ -152,7 +172,7 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2500, // the scene should last for a scroll distance of 100px
+      duration: 2000, // the scene should last for a scroll distance of 100px
       offset: 800, // start this scene after scrolling for 50px
     })
       .addIndicators()
@@ -162,7 +182,7 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2000, // the scene should last for a scroll distance of 100px
+      duration: 2200, // the scene should last for a scroll distance of 100px
       offset: 800, // start this scene after scrolling for 50px
     })
       .addIndicators()
@@ -172,7 +192,7 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 3800, // the scene should last for a scroll distance of 100px
+      duration: 2000, // the scene should last for a scroll distance of 100px
       offset: 800, // start this scene after scrolling for 50px
     })
       .addIndicators()
