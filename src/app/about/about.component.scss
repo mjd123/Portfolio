@@ -1,0 +1,71 @@
+@import "../../scss/colors.scss";
+
+.about {
+  display: grid;
+  clip-path: polygon(0 0, 100% 14%, 100% 100%, 0% 100%);
+  background-color: $green;
+
+  .blob-1 {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    fill: $orange;
+  }
+  .blob-2 {
+    position: absolute;
+    left: -90px;
+    top: -90px;
+    z-index: -1;
+  }
+
+  .title {
+    color: $white;
+    font-size: 48px;
+    margin: 145px 0 57px 0;
+    z-index: 1;
+    p {
+      margin: 0;
+    }
+  }
+
+  .about-content {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 139px;
+    position: relative;
+
+    .text-container {
+      display: grid;
+      width: 330px;
+      height: 329px;
+      background-color: $white;
+      padding: 25px 30px 30px 30px;
+
+      p {
+        color: $green;
+        font-size: 18px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.78;
+        letter-spacing: normal;
+      }
+
+      .social-icons {
+        grid-row: 2;
+        align-self: end;
+        img {
+          width: 35px;
+          height: 34px;
+          margin-right: 14px;
+        }
+      }
+    }
+
+    .image-container {
+      position: relative;
+      left: -50px;
+    }
+  }
+}

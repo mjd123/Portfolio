@@ -1,0 +1,65 @@
+@import "../../scss/colors.scss";
+
+.projects {
+  position: relative;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+
+  p {
+    //font-size: 70px;
+    font-size: 210px;
+    color: $green;
+    text-align: center;
+    margin: 0;
+    //transform: scale(3); // 3* font size
+  }
+
+  .projects-text {
+    display: block;
+    padding: 383px 0 500px 0;
+    overflow: hidden;
+  }
+  .project-container {
+    position: absolute;
+
+    &.one {
+      top: 140px;
+      //left: 100%;
+      transform: scale(2);
+      img {
+        width: calc(414px);
+        height: calc(483px);
+      }
+    }
+
+    &.two {
+      top: 180px;
+      transform: scale(2);
+      img {
+        width: calc(300px);
+        height: calc(400px);
+      }
+    }
+
+    &.three {
+      top: 630px;
+      transform: scale(2);
+      //left: 312px;
+
+      img {
+        width: calc(380px);
+        height: calc(400px);
+      }
+    }
+
+    &.four {
+      top: 670px;
+
+      transform: scale(2);
+      img {
+        width: 379px;
+        height: 200px;
+      }
+    }
+  }
+}
