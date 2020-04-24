@@ -1,3 +1,4 @@
+import { SingleProjectComponent } from "./single-project/single-project.component";
 import { element } from "protractor";
 import {
   Component,
@@ -8,6 +9,8 @@ import {
   ViewChild,
   ViewChildren,
   QueryList,
+  Input,
+  Output,
 } from "@angular/core";
 import {
   trigger,
@@ -37,25 +40,40 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 export class ProjectsComponent implements OnInit {
   @ViewChild("projectsText", { static: true }) projectsText: ElementRef;
   @ViewChildren("projects") projects: QueryList<any>;
+  @Input() delete: boolean = true;
+
+  singleProjects: object = {
+    project: {
+      text: {
+        title: "El pastor",
+        subTitle: "javascript • css • website",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      image: {
+        src: "https://via.placeholder.com/460",
+        alt: "picture of project",
+        url: "1",
+      },
+    },
+  };
+
   images = [
     "https://via.placeholder.com/460",
     "https://via.placeholder.com/460",
     "https://via.placeholder.com/460",
     "https://via.placeholder.com/460",
   ];
+
   public ScrollMagic: any;
-  //public controller: any;
+
   controller = new ScrollMagic.Controller();
   width: number;
   height: number;
   elementChildren: Array<any>;
 
-  //isOpen = true;
   constructor() {
     this.ScrollMagic = require("scrollmagic");
-
-    //this.ScrollMagic = require("scrollmagic");
-    // require("scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap");
   }
 
   ngOnInit() {}
@@ -224,4 +242,9 @@ export class ProjectsComponent implements OnInit {
       //this.isOpen = false;
     }
   };
+
+  // listen to event from single project
+  removeChildComponent(event) {
+    this.delete = event;
+  }
 }
