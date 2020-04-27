@@ -1,8 +1,6 @@
 @import "../../../scss/colors.scss";
 
 .single-project-container {
-  background: $green;
-  opacity: 0.8;
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -11,6 +9,8 @@
   z-index: 99;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+  overflow: hidden;
 
   a {
     cursor: pointer;
@@ -29,15 +29,18 @@
   }
 
   .text-container {
-    position: relative;
+    //position: relative;
     grid-column-start: 2;
     //height: 100%;
     //width: 100%;
     padding: 40px 40px 28px 40px;
     color: $white;
+    background: $green;
+    opacity: 0.8;
 
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 
     .close {
       align-self: flex-end;
@@ -62,6 +65,9 @@
 
       .text {
         font-size: 32px;
+        @media screen and (max-width: 1280px) {
+          font-size: 26px;
+        }
       }
     }
 

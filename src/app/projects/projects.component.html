@@ -1,18 +1,18 @@
 <section class="projects" #projects>
   <app-single-project
     *ngIf="!this.delete"
-    (delete)="removeChildComponent($event)"
-    [myData]="singleProjects"
+    (delete)="toggleChildComponent($event)"
+    [projectsData]="singleProject"
+    [projectsContainer]="projectsContainer"
   ></app-single-project>
   <div class="projects-text" #projectsText>
     <p>Projects</p>
   </div>
 
-  <div class="project-container one" (click)="this.delete = false">
+  <div class="project-container one" (click)="toggleChildComponent(0,this)">
     <img src="https://via.placeholder.com/460" alt="" />
   </div>
-
-  <div class="project-container two" (click)="this.delete = false">
+  <div class="project-container two" (click)="toggleChildComponent(1,this)">
     <img src="https://via.placeholder.com/460" alt="" />
   </div>
   <div class="project-container three" (click)="this.delete = false">

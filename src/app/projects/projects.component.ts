@@ -3,6 +3,7 @@ import { element } from "protractor";
 import {
   Component,
   OnInit,
+  OnDestroy,
   AfterViewInit,
   HostListener,
   ElementRef,
@@ -10,7 +11,7 @@ import {
   ViewChildren,
   QueryList,
   Input,
-  Output,
+  Renderer2,
 } from "@angular/core";
 import {
   trigger,
@@ -41,9 +42,10 @@ export class ProjectsComponent implements OnInit {
   @ViewChild("projectsText", { static: true }) projectsText: ElementRef;
   @ViewChildren("projects") projects: QueryList<any>;
   @Input() delete: boolean = true;
+  projectsContainer: HTMLElement;
 
-  singleProjects: object = {
-    project: {
+  singleProjects: Array<object> = [
+    {
       text: {
         title: "El pastor",
         subTitle: "javascript • css • website",
@@ -56,7 +58,22 @@ export class ProjectsComponent implements OnInit {
         url: "1",
       },
     },
-  };
+    {
+      text: {
+        title: "Creative Family",
+        subTitle: "javascript • css • website",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      image: {
+        src: "https://via.placeholder.com/460",
+        alt: "picture of project",
+        url: "1",
+      },
+    },
+  ];
+
+  singleProject: Object;
 
   images = [
     "https://via.placeholder.com/460",
@@ -72,7 +89,7 @@ export class ProjectsComponent implements OnInit {
   height: number;
   elementChildren: Array<any>;
 
-  constructor() {
+  constructor(private renderer: Renderer2, private el: ElementRef) {
     this.ScrollMagic = require("scrollmagic");
   }
 
@@ -83,10 +100,12 @@ export class ProjectsComponent implements OnInit {
     this.height = window.innerHeight;
     this.elementChildren = this.projects.last.nativeElement.children;
 
+    this.projectsContainer = this.projects.last.nativeElement;
+    //console.log(this.projectTop, this.projects.first);
+
     const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
 
     const finalProjectTextWidth: any = (projectsText.width * 0.3).toFixed(0);
-    console.log(this.projectsText.nativeElement.getBoundingClientRect());
 
     let tweens = {
       startTween: TweenMax.to(".projects-text", 500, {
@@ -218,33 +237,49 @@ export class ProjectsComponent implements OnInit {
       .addTo(this.controller); // assign the scene to the controller
   }
 
-  ngOnDestroy() {}
+  // scrollEvent = (event: any): void => {
+  //   const element = this.projectsText.nativeElement;
+  //   const windowHeight = event.path[1].innerHeight;
+  //   const elementHeight = element.getBoundingClientRect().height;
+  //   let elementTop = element.getBoundingClientRect().top;
 
-  scrollEvent = (event: any): void => {
-    const element = this.projectsText.nativeElement;
-    const windowHeight = event.path[1].innerHeight;
-    const elementHeight = element.getBoundingClientRect().height;
-    let elementTop = element.getBoundingClientRect().top;
+  //   if (event.path[1].scrollY >= elementTop + 720 - windowHeight) {
+  //     element.style.transform = `scale(${
+  //       3 / (event.path[1].scrollY / (1263 - windowHeight))
+  //     })`;
 
-    if (event.path[1].scrollY >= elementTop + 720 - windowHeight) {
-      element.style.transform = `scale(${
-        3 / (event.path[1].scrollY / (1263 - windowHeight))
-      })`;
+  //     // console.log(
+  //     //   "start growing text",
+  //     //   3 / (event.path[1].scrollY / (1263 - windowHeight))
+  //     // );
+  //     document.body.className = "no-scroll";
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //     return;
+  //     //this.isOpen = false;
+  //   }
+  // };
 
-      // console.log(
-      //   "start growing text",
-      //   3 / (event.path[1].scrollY / (1263 - windowHeight))
-      // );
-      document.body.className = "no-scroll";
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-      //this.isOpen = false;
-    }
-  };
+  ngOnDestroy() {
+    console.log("destroying child...");
+  }
 
   // listen to event from single project
-  removeChildComponent(event) {
-    this.delete = event;
+  toggleChildComponent(index, element) {
+    this.delete = !this.delete;
+    console.log(this.delete, "delete");
+
+    this.singleProject = this.singleProjects[index];
+    console.log(this.singleProject, "hit");
+
+    if (!this.delete) {
+      console.log(this.el.nativeElement.children[0].children[0]);
+
+      this.renderer.setStyle(
+        this.el.nativeElement.children[0].children[0],
+        "overflow-y",
+        "hidden"
+      );
+    }
   }
 }
