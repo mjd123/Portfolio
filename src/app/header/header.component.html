@@ -1,30 +1,42 @@
 <header>
-  <svg
-    class="blob"
-    width="600"
-    height="600"
-    viewBox="0 0 600 600"
-    preserveAspectRatio="xMidYMid slice"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g transform="translate(300,300)">
-      <path
-        id="path"
-        d="M181.8,-147.8C218.7,-98.7,220,-24.1,205.4,49.7C190.8,123.5,160.3,196.4,109.1,217.6C58,238.8,-13.7,208.1,-83.1,174.1C-152.5,140.1,-219.6,102.8,-231.1,52.6C-242.7,2.5,-198.7,-60.5,-151,-112.1C-103.2,-163.6,-51.6,-203.8,10.4,-212.1C72.4,-220.4,144.9,-196.9,181.8,-147.8Z"
-        fill="#023f92"
-      />
-    </g>
-  </svg>
-
-  <div class="header-links">
-    <a class="link">Projects</a>
-    <img src="../../assets/logo.svg" />
-
-    <a class="link">About</a>
-  </div>
-
   <div class="header-text">
-    <p class="title">Marcus <span>Denny</span></p>
+    <img class="logo" src="../../assets/logo-brown.svg" />
+    <p class="title">Marcus Denny</p>
     <p class="sub-title">I am a Frontend Developer</p>
+  </div>
+  <div class="header-links">
+    <a class="link" pageScroll href=".projects">Projects</a>
+    <a class="link" pageScroll href=".about">About</a>
+    <div class="blob-container" #canvas>
+      <!-- <canvas width="136" height="180"></canvas> -->
+      <!-- <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="136"
+        height="180"
+        viewBox="0 0 136 180"
+        class="blob-one"
+      >
+        <path
+          id="path"
+          fill="#F56F4F"
+          fill-rule="evenodd"
+          d="M37.7 16.735C66.84-11.387 99.759-3.5 122.754 36.13c22.996 39.632 15.358 64.027-17.52 98.572-32.877 34.546-75.112 65.515-96.52 28.618-21.409-36.897-.15-118.465 28.988-146.586z"
+        />
+      </svg> -->
+      <img src="../../assets/header-blob-spotty@3x.png" />
+      <!-- <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="280"
+        height="326"
+        viewBox="0 0 280 326"
+        class="blob-two"
+      >
+        <path
+          fill="#F56F4F"
+          fill-rule="evenodd"
+          d="M138.41 15.548c53.154-51.336 75.478 34.866 117.426 107.214 41.947 72.348 28.014 116.882-31.96 179.945C163.9 365.77 46.911 288.037 7.858 220.681S85.256 66.884 138.41 15.548z"
+        />
+      </svg> -->
+    </div>
   </div>
 </header>

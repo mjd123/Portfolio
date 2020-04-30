@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
 
   a {
     cursor: pointer;

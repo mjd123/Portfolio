@@ -26,13 +26,17 @@ export class SingleProjectComponent implements OnInit {
   @ViewChild("singleProjectContainer", { static: true })
   singleProjectContainer: ElementRef;
   controller = new ScrollMagic.Controller();
+
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngOnInit() {
-    // change negite to positive and convert to number
+    // change negitive to positive and convert to number
     let projectContainerTop = Math.abs(
-      parseInt(this.projectsContainer.style.top)
+      this.projectsContainer.getBoundingClientRect().top
     );
+
+    console.log(this.projectsContainer.getBoundingClientRect().top);
+
     // make sure overlay div is lined up to screen top
     this.renderer.setStyle(
       this.el.nativeElement.children[0],

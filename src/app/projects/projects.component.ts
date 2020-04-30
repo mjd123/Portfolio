@@ -12,15 +12,10 @@ import {
   QueryList,
   Input,
   Renderer2,
+  NgZone,
 } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from "@angular/animations";
-//import "imports-loader?define=>false!animation.gsap";
+
+import { CanvasBlob } from "../animations/blob-canvas-animation";
 
 import { TweenMax, TimelineMax } from "gsap";
 
@@ -32,6 +27,7 @@ import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
 //import "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
+
 @Component({
   selector: "app-projects",
   templateUrl: "./projects.component.html",
@@ -41,6 +37,8 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 export class ProjectsComponent implements OnInit {
   @ViewChild("projectsText", { static: true }) projectsText: ElementRef;
   @ViewChildren("projects") projects: QueryList<any>;
+  @ViewChild("canvas", { static: true }) canvas: ElementRef;
+  @ViewChildren("overlayTitle") overlayTitle: ElementRef;
   @Input() delete: boolean = true;
   projectsContainer: HTMLElement;
 
@@ -89,7 +87,12 @@ export class ProjectsComponent implements OnInit {
   height: number;
   elementChildren: Array<any>;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private ngZone: NgZone,
+    private CanvasBlob: CanvasBlob
+  ) {
     this.ScrollMagic = require("scrollmagic");
   }
 
@@ -105,37 +108,36 @@ export class ProjectsComponent implements OnInit {
 
     const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
 
-    const finalProjectTextWidth: any = (projectsText.width * 0.3).toFixed(0);
+    const finalProjectTextWidth: any = (projectsText.width * 0.1).toFixed(0);
 
     let tweens = {
-      startTween: TweenMax.to(".projects-text", 500, {
+      startTween: TweenMax.to(".projects-text", 800, {
         scale: 0.3,
+        opacity: 0,
         ease: "Linear.easeNone",
       }),
       wipeAnimations: [
         new TimelineMax().fromTo(
           ".one",
           1000,
-          { x: this.width + this.elementChildren[1].clientWidth },
+          { x: this.width - this.elementChildren[2].clientWidth / 2, y: "0%" },
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 + finalProjectTextWidth / 2 - 60,
+            x: this.width / 2 + 30,
+            y: "40%",
             ease: "Linear.easeNone",
           }
         ),
         new TimelineMax().fromTo(
           ".two",
           1000,
-          { x: 0 - this.width - this.elementChildren[2].clientWidth },
+          { x: 0 - this.width - this.elementChildren[3].clientWidth },
           {
             scale: 1,
             z: -1500,
-            x:
-              this.width / 2 -
-              finalProjectTextWidth / 2 -
-              this.elementChildren[2].clientWidth +
-              60,
+            x: this.width / 2 - this.elementChildren[3].clientWidth - 30,
+            y: "15%",
             ease: "Linear.easeNone",
           }
         ),
@@ -143,28 +145,25 @@ export class ProjectsComponent implements OnInit {
           ".three",
           1000,
           {
-            x: 0 - this.width - this.elementChildren[3].clientWidth,
-            y: "100%",
+            x: this.width - this.elementChildren[4].clientWidth / 4,
+            y: "160%",
           },
           {
             scale: 1,
             z: -1500,
-            x:
-              this.width / 2 -
-              finalProjectTextWidth / 2 -
-              this.elementChildren[3].clientWidth / 2,
-            y: 0,
+            x: this.width / 2 - this.elementChildren[4].clientWidth - 30,
+            y: "120%",
             ease: "Linear.easeNone",
           }
         ),
         new TimelineMax().fromTo(
           ".four",
           1000,
-          { x: this.width + this.elementChildren[3].clientWidth, y: "80%" },
+          { x: this.width + this.elementChildren[5].clientWidth, y: "80%" },
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 + finalProjectTextWidth / 4 - 60,
+            x: this.width / 2 + 30,
             y: 0,
             ease: "Linear.easeNone",
           }
@@ -175,7 +174,7 @@ export class ProjectsComponent implements OnInit {
     //containeing
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 3100, // the scene should last for a scroll distance of 100px
+      duration: 3200, // the scene should last for a scroll distance of 100px
       offset: 550, // start this scene after scrolling for 50px
     })
       .addIndicators()
@@ -199,7 +198,7 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2800, // the scene should last for a scroll distance of 100px
+      duration: 2500, // the scene should last for a scroll distance of 100px
       offset: 800, // start this scene after scrolling for 50px
     })
       .addIndicators()
@@ -235,51 +234,77 @@ export class ProjectsComponent implements OnInit {
       .addIndicators()
       .setTween(tweens.wipeAnimations[3])
       .addTo(this.controller); // assign the scene to the controller
+
+    let blobOne = new CanvasBlob();
+
+    this.ngZone.runOutsideAngular(() =>
+      blobOne.createBlob(
+        this.canvas.nativeElement,
+        "#f56f4f",
+        "blob-one",
+        136,
+        180,
+        180
+      )
+    );
   }
 
-  // scrollEvent = (event: any): void => {
-  //   const element = this.projectsText.nativeElement;
-  //   const windowHeight = event.path[1].innerHeight;
-  //   const elementHeight = element.getBoundingClientRect().height;
-  //   let elementTop = element.getBoundingClientRect().top;
-
-  //   if (event.path[1].scrollY >= elementTop + 720 - windowHeight) {
-  //     element.style.transform = `scale(${
-  //       3 / (event.path[1].scrollY / (1263 - windowHeight))
-  //     })`;
-
-  //     // console.log(
-  //     //   "start growing text",
-  //     //   3 / (event.path[1].scrollY / (1263 - windowHeight))
-  //     // );
-  //     document.body.className = "no-scroll";
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //     return;
-  //     //this.isOpen = false;
-  //   }
-  // };
+  projectHover() {
+    this.isOverflown(this.overlayTitle);
+  }
 
   ngOnDestroy() {
     console.log("destroying child...");
   }
 
   // listen to event from single project
-  toggleChildComponent(index, element) {
+  toggleChildComponent(index) {
     this.delete = !this.delete;
     console.log(this.delete, "delete");
 
     this.singleProject = this.singleProjects[index];
-    console.log(this.singleProject, "hit");
 
     if (!this.delete) {
       console.log(this.el.nativeElement.children[0].children[0]);
 
-      this.renderer.setStyle(
-        this.el.nativeElement.children[0].children[0],
-        "overflow-y",
-        "hidden"
-      );
+      // this.renderer.setStyle(
+      //   this.el.nativeElement.children[0].children[0],
+      //   "overflow-y",
+      //   "hidden"
+      // );
     }
+  }
+
+  isOverflown(element) {
+    console.log("called", element);
+
+    // let overflownElemts = elements._results
+    //   .filter((el) => {
+    //     // check if element overflows parent
+    //     return (
+    //       el.nativeElement.parentElement.clientWidth <
+    //         el.nativeElement.clientWidth ||
+    //       el.nativeElement.parentElement.clientHeight <
+    //         el.nativeElement.clientWidth
+    //     );
+    //   })
+    //   .forEach((element) => {
+    let parentWidth = element.target.clientWidth;
+    let elementWidth = element.target.firstElementChild.clientWidth;
+    let widthDelta = elementWidth - parentWidth;
+
+    element.target.firstElementChild.style.background = `linear-gradient(to right, #006b64 ${
+      widthDelta / 2
+    }px, #ffffff ${widthDelta / 2}px, #ffffff ${parentWidth}px, #ffffff ${
+      parentWidth + widthDelta / 2
+    }px, #006b64 ${parentWidth + widthDelta / 2}px )`;
+    element.target.firstElementChild.style.webkitTextFillColor = "transparent";
+    element.target.firstElementChild.style.webkitBackgroundClip = "text";
+
+    // if subtitle is outside of container div
+    element.target.firstElementChild.clientHeight > element.target.clientHeight
+      ? (element.target.lastElementChild.style.color = "#006b64")
+      : (element.target.lastElementChild.style.color = "white");
+    //});
   }
 }
