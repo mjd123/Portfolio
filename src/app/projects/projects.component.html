@@ -13,31 +13,31 @@
     <p>Projects</p>
   </div>
 
-  <div class="project-container one" (click)="toggleChildComponent(0,this)">
+  <div class="project-container one" (click)="toggleChildComponent(0)">
     <div class="overlay" (mouseenter)="isOverflown($event)">
-      <p #overlayTitle>{{ singleProjects[0].text.title }}</p>
-      <p>{{ singleProjects[0].text.subTitle }}</p>
+      <p #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
+      <p>{{ singleProjects[0]?.text.subTitle }}</p>
     </div>
     <img src="https://via.placeholder.com/460" alt="" />
   </div>
-  <div class="project-container two" (click)="toggleChildComponent(1,this)">
+  <div class="project-container two" (click)="toggleChildComponent(1)">
     <div class="overlay" (mouseenter)="isOverflown($event)">
-      <p #overlayTitle>{{ singleProjects[0].text.title }}</p>
-      <p>{{ singleProjects[0].text.subTitle }}</p>
+      <p #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
+      <p>{{ singleProjects[0]?.text.subTitle }}</p>
     </div>
     <img src="https://via.placeholder.com/460" alt="" />
   </div>
   <div class="project-container three" (click)="this.delete = false">
     <div class="overlay" (mouseenter)="isOverflown($event)">
-      <p #overlayTitle>{{ singleProjects[0].text.title }}</p>
-      <p>{{ singleProjects[0].text.subTitle }}</p>
+      <p #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
+      <p>{{ singleProjects[0]?.text.subTitle }}</p>
     </div>
     <img src="https://via.placeholder.com/460" alt="" />
   </div>
   <div class="project-container four" (click)="this.delete = false">
     <div class="overlay" (mouseenter)="isOverflown($event)">
-      <p #overlayTitle>{{ singleProjects[1].text.title }}</p>
-      <p>{{ singleProjects[0].text.subTitle }}</p>
+      <p #overlayTitle>{{ singleProjects[1]?.text.title }}</p>
+      <p>{{ singleProjects[0]?.text.subTitle }}</p>
     </div>
     <img src="https://via.placeholder.com/460" alt="" />
   </div>

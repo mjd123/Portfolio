@@ -42,7 +42,7 @@ export class ProjectsComponent implements OnInit {
   @Input() delete: boolean = true;
   projectsContainer: HTMLElement;
 
-  singleProjects: Array<object> = [
+  singleProjects: any = [
     {
       text: {
         title: "El pastor",
@@ -71,7 +71,7 @@ export class ProjectsComponent implements OnInit {
     },
   ];
 
-  singleProject: Object;
+  singleProject: any;
 
   images = [
     "https://via.placeholder.com/460",
