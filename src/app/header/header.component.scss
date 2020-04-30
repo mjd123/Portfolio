@@ -52,6 +52,16 @@ header {
     -webkit-font-smoothing: subpixel-antialiased;
     transition: all 0.5s ease;
 
+    @media screen and(max-width:$mobile) {
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+
     &:first-of-type {
       margin-right: 47px;
     }
@@ -117,5 +127,14 @@ header {
     letter-spacing: normal;
     text-align: left;
     color: $brown;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 32px;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+    }
   }
 }
