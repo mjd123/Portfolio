@@ -1,4 +1,5 @@
 @import "../../../scss/colors.scss";
+@import "../../../scss/fonts.scss";
 
 .single-project-container {
   height: 100vh;
@@ -11,6 +12,11 @@
   grid-template-columns: 1fr 1fr;
   box-sizing: border-box;
   overflow-x: hidden;
+  overscroll-behavior: contain;
+
+  @media screen and (max-width: $mobile) {
+    height: 100%;
+  }
 
   a {
     cursor: pointer;
@@ -21,6 +27,11 @@
     grid-column-end: 2;
     height: 100%;
     width: 100%;
+
+    @media screen and (max-width: $mobile) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
 
     img {
       height: 100%;
@@ -42,6 +53,11 @@
     flex-direction: column;
     box-sizing: border-box;
 
+    @media screen and (max-width: $mobile) {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
     .close {
       align-self: flex-end;
     }
@@ -56,17 +72,29 @@
         text-align: left;
         margin-bottom: -10px;
         margin-top: 20px;
+
+        @media screen and (max-width: $mobile) {
+          font-size: 52px;
+        }
       }
 
       .sub-title {
         font-size: 18px;
         margin-bottom: 25px;
+
+        @media screen and (max-width: $mobile) {
+          font-size: 16px;
+        }
       }
 
       .text {
         font-size: 32px;
         @media screen and (max-width: 1280px) {
           font-size: 26px;
+        }
+
+        @media screen and (max-width: $mobile) {
+          font-size: 18px;
         }
       }
     }

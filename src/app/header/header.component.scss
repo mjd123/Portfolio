@@ -5,12 +5,24 @@
   position: absolute;
   left: 0;
   z-index: 1;
+
+  @media screen and(max-width:$mobile) {
+    width: 53px;
+    height: 70px;
+    left: 50px;
+    top: 20px;
+  }
 }
 
 :host::ng-deep .blob-two {
   position: absolute;
   left: -10%;
   top: 60%;
+
+  @media screen and(max-width:$mobile) {
+    width: 89px;
+    height: 104px;
+  }
 }
 
 header {
@@ -28,6 +40,10 @@ header {
 
   //clip-path: polygon(0 0, 100% 0, 100% 86%, 0% 100%);
   background-color: $green;
+
+  @media screen and(max-width:$mobile) {
+    padding: 20px;
+  }
 }
 
 .header-links {
@@ -53,7 +69,7 @@ header {
     transition: all 0.5s ease;
 
     @media screen and(max-width:$mobile) {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
@@ -64,6 +80,10 @@ header {
 
     &:first-of-type {
       margin-right: 47px;
+
+      @media screen and(max-width:$mobile) {
+        margin-right: 15px;
+      }
     }
 
     &:hover {
@@ -90,6 +110,11 @@ header {
 
       position: relative;
       z-index: 1;
+
+      @media screen and (max-width: $mobile) {
+        width: 175px;
+        height: 280px;
+      }
     }
     canvas {
       position: absolute;
@@ -108,6 +133,11 @@ header {
   .logo {
     display: block;
     margin-bottom: 225px;
+
+    @media screen and (max-width: $mobile) {
+      width: 70px;
+      height: 70px;
+    }
   }
 
   .title {
@@ -130,11 +160,10 @@ header {
 
     @media screen and (max-width: $mobile) {
       font-size: 32px;
-      font-weight: 300;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
+    }
+
+    @media screen and (max-width: $small-mobile) {
+      font-size: 26px;
     }
   }
 }

@@ -31,11 +31,12 @@ export class SingleProjectComponent implements OnInit {
 
   ngOnInit() {
     // change negitive to positive and convert to number
-    let projectContainerTop = Math.abs(
-      this.projectsContainer.getBoundingClientRect().top
-    );
 
-    console.log(this.projectsContainer.getBoundingClientRect().top);
+    // if screen size is less than 420 do not turn into negative number
+    let projectContainerTop =
+      this.projectsContainer.getBoundingClientRect().top < 0
+        ? Math.abs(this.projectsContainer.getBoundingClientRect().top)
+        : -Math.abs(this.projectsContainer.getBoundingClientRect().top);
 
     // make sure overlay div is lined up to screen top
     this.renderer.setStyle(
@@ -43,6 +44,7 @@ export class SingleProjectComponent implements OnInit {
       "top",
       `${projectContainerTop}px`
     );
+
     // stop user being able to scroll
     this.renderer.addClass(document.body, "no-scroll");
   }

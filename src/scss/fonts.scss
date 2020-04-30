@@ -15,11 +15,10 @@
 
   @media screen and (max-width: $mobile) {
     font-size: 70px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1;
-    letter-spacing: normal;
+  }
+  @media screen and (max-width: $small-mobile) {
+    font-size: 52px;
   }
 }
 
