@@ -104,7 +104,6 @@ export class ProjectsComponent implements OnInit {
     this.elementChildren = this.projects.last.nativeElement.children;
 
     this.projectsContainer = this.projects.last.nativeElement;
-    //console.log(this.projectTop, this.projects.first);
 
     const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
 
@@ -124,8 +123,8 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 + 30,
-            y: "40%",
+            x: this.width > 420 ? this.width / 2 + 30 : 0,
+            y: `${this.width > 420 ? "40%" : "0%"}`,
             ease: "Linear.easeNone",
           }
         ),
@@ -136,8 +135,14 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 - this.elementChildren[3].clientWidth - 30,
-            y: "15%",
+            x:
+              this.width > 420
+                ? this.width / 2 - this.elementChildren[3].clientWidth - 30
+                : this.width - this.elementChildren[3].clientWidth - 40,
+            y:
+              this.width > 420
+                ? "15%"
+                : this.elementChildren[2].clientHeight - 80,
             ease: "Linear.easeNone",
           }
         ),
@@ -151,8 +156,14 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 - this.elementChildren[4].clientWidth - 30,
-            y: "120%",
+            x:
+              this.width > 420
+                ? this.width / 2 - this.elementChildren[4].clientWidth - 30
+                : 0,
+            y:
+              this.width > 420
+                ? "120%"
+                : this.elementChildren[3].clientHeight + 40,
             ease: "Linear.easeNone",
           }
         ),
@@ -163,8 +174,15 @@ export class ProjectsComponent implements OnInit {
           {
             scale: 1,
             z: -1500,
-            x: this.width / 2 + 30,
-            y: 0,
+            x:
+              this.width > 420
+                ? this.width / 2 + 30
+                : this.width - this.elementChildren[5].clientWidth - 40,
+            y:
+              this.width > 420
+                ? 0
+                : this.elementChildren[4].clientHeight +
+                  this.elementChildren[3].clientHeight,
             ease: "Linear.easeNone",
           }
         ),
@@ -174,8 +192,8 @@ export class ProjectsComponent implements OnInit {
     //containeing
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 3200, // the scene should last for a scroll distance of 100px
-      offset: 550, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 3200 : this.height * 2.5, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 550 : this.height / 2.1, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.startTween)
@@ -186,8 +204,8 @@ export class ProjectsComponent implements OnInit {
     // text scale
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 3000, // the scene should last for a scroll distance of 100px
-      offset: 550, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 3000 : this.height * 2, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 550 : 300, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.startTween)
@@ -198,8 +216,8 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2500, // the scene should last for a scroll distance of 100px
-      offset: 800, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 2500 : this.height * 2, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 800 : 300, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.wipeAnimations[0])
@@ -208,8 +226,8 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2000, // the scene should last for a scroll distance of 100px
-      offset: 800, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 2000 : this.height * 2, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 800 : 300, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.wipeAnimations[1])
@@ -218,8 +236,8 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2200, // the scene should last for a scroll distance of 100px
-      offset: 800, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 2200 : this.height * 2, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 800 : 300, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.wipeAnimations[2])
@@ -228,8 +246,8 @@ export class ProjectsComponent implements OnInit {
     // project image
     new ScrollMagic.Scene({
       triggerElement: ".projects",
-      duration: 2000, // the scene should last for a scroll distance of 100px
-      offset: 800, // start this scene after scrolling for 50px
+      duration: this.width > 420 ? 2000 : this.height * 2, // the scene should last for a scroll distance of 100px
+      offset: this.width > 420 ? 800 : 300, // start this scene after scrolling for 50px
     })
       .addIndicators()
       .setTween(tweens.wipeAnimations[3])
