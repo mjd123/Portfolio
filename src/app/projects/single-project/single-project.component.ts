@@ -1,64 +1,69 @@
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Output,
-  EventEmitter,
-  Input,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from "@angular/core";
-import { TweenMax, TimelineMax } from "gsap";
+    Component,
+    OnInit,
+    OnDestroy,
+    Output,
+    EventEmitter,
+    Input,
+    ViewChild,
+    ElementRef,
+    Renderer2,
+} from '@angular/core';
+import { TweenMax, TimelineMax } from 'gsap';
 
-import ScrollMagic from "ScrollMagic";
-import "scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators";
+import ScrollMagic from 'ScrollMagic';
+import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 
 @Component({
-  selector: "app-single-project",
-  templateUrl: "./single-project.component.html",
-  styleUrls: ["./single-project.component.scss"],
+    selector: 'app-single-project',
+    templateUrl: './single-project.component.html',
+    styleUrls: ['./single-project.component.scss'],
 })
 export class SingleProjectComponent implements OnInit {
-  @Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() projectsData;
-  @Input() projectsContainer: HTMLElement;
-  @ViewChild("singleProjectContainer", { static: true })
-  singleProjectContainer: ElementRef;
-  controller = new ScrollMagic.Controller();
+    @Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input() projectsData;
+    @Input() projectsContainer: HTMLElement;
+    @ViewChild('singleProjectContainer', { static: true })
+    singleProjectContainer: ElementRef;
+    controller = new ScrollMagic.Controller();
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+    constructor(private renderer: Renderer2, private el: ElementRef) {}
 
-  ngOnInit() {
-    // change negitive to positive and convert to number
+    ngOnInit() {
+        console.log(this.singleProjectContainer);
 
-    // if screen size is less than 420 do not turn into negative number
-    let projectContainerTop =
-      this.projectsContainer.getBoundingClientRect().top < 0
-        ? Math.abs(this.projectsContainer.getBoundingClientRect().top)
-        : -Math.abs(this.projectsContainer.getBoundingClientRect().top);
+        // change negitive to positive and convert to number
 
-    // make sure overlay div is lined up to screen top
-    this.renderer.setStyle(
-      this.el.nativeElement.children[0],
-      "top",
-      `${projectContainerTop}px`
-    );
+        // if screen size is less than 420 do not turn into negative number
+        // let projectContainerTop =
+        //     this.projectsContainer.getBoundingClientRect().top < 0
+        //         ? Math.abs(this.projectsContainer.getBoundingClientRect().top)
+        //         : -Math.abs(this.projectsContainer.getBoundingClientRect().top);
 
-    // stop user being able to scroll
-    this.renderer.addClass(document.body, "no-scroll");
-  }
+        // // make sure overlay div is lined up to screen top
+        // this.renderer.setStyle(
+        //     this.el.nativeElement.children[0],
+        //     'top',
+        //     `${projectContainerTop}px`
+        // );
 
-  ngAfterViewInit() {}
+        // stop user being able to scroll
+        this.renderer.addClass(document.body, 'no-scroll');
+        this.renderer.addClass(this.singleProjectContainer.nativeElement, 'no-scroll');
+        this.renderer.setStyle(document, 'overflow-y', 'hidden');
+    }
 
-  ngOnDestroy() {
-    // reset all
-    this.projectsData = {};
-    this.renderer.removeClass(document.body, "no-scroll");
-  }
+    ngAfterViewInit() {}
 
-  close() {
-    // pass close event back to parent component
-    this.delete.emit(true);
-  }
+    ngOnDestroy() {
+        // reset all
+        this.projectsData = {};
+        this.renderer.removeClass(document.body, 'no-scroll');
+        this.renderer.removeClass(this.singleProjectContainer.nativeElement, 'no-scroll');
+    }
+
+    close() {
+        // pass close event back to parent component
+        this.delete.emit(true);
+    }
 }
