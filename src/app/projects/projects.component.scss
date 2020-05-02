@@ -44,6 +44,7 @@
         margin-bottom: auto;
 
         img {
+            //ratio 0.85
             max-width: 407px;
             max-height: 475px;
 
@@ -63,14 +64,26 @@
         display: block;
         overflow: hidden;
         align-self: flex-start;
+
+        @media screen and (max-width: $mobile) {
+            align-self: center;
+        }
     }
     .project-container {
         position: absolute;
         cursor: pointer;
         z-index: 1;
 
+        @media screen and (max-width: $small-laptop) {
+            top: 100px;
+        }
+
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
             top: 200px;
+        }
+
+        @media screen and (max-width: $tablet) {
+            top: 0;
         }
 
         &:hover {
@@ -147,20 +160,22 @@
         }
 
         &.one {
-            top: -50px;
+            //top: -50px;
             transform: scale(1.5);
 
-            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-                top: 200px;
-            }
-
             @media screen and (max-width: $mobile) {
-                top: 0px;
+                left: 0;
             }
 
             img {
-                width: calc(414px);
-                height: calc(483px);
+                //ratio 0.85
+                width: 414px;
+                height: 483px;
+
+                @media screen and (max-width: $small-laptop) {
+                    width: 342px;
+                    height: 400px;
+                }
 
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                     width: 300px;
@@ -176,22 +191,30 @@
                     width: 150px;
                     height: 176px;
                 }
+
+                @media screen and (max-width: $small-mobile) {
+                    width: 119px;
+                    height: 140px;
+                }
             }
         }
 
         &.two {
             transform: scale(2);
 
-            @media screen and (max-width: $tablet) {
-                left: 0;
+            @media screen and (max-width: $mobile) {
+                left: 50px;
             }
 
-            @media screen and (max-width: $mobile) {
-                left: -30px;
-            }
             img {
-                width: calc(300px);
-                height: calc(400px);
+                // ratio 0.75
+                width: 300px;
+                height: 400px;
+
+                @media screen and (max-width: $small-laptop) {
+                    width: 262.5px;
+                    height: 350px;
+                }
 
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                     width: 225px;
@@ -207,23 +230,30 @@
                     width: 176px;
                     height: 185px;
                 }
+
+                @media screen and (max-width: $small-mobile) {
+                    width: 120px;
+                    height: 160px;
+                }
             }
         }
 
         &.three {
             transform: scale(1.5);
 
-            @media screen and (max-width: $tablet) {
+            @media screen and (max-width: $mobile) {
                 left: 0;
             }
 
-            @media screen and (max-width: $mobile) {
-                left: 30px;
-            }
-
             img {
-                width: calc(380px);
-                height: calc(400px);
+                //ratio 1.05
+                width: 380px;
+                height: 400px;
+
+                @media screen and (max-width: $small-laptop) {
+                    width: 333px;
+                    height: 350px;
+                }
 
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                     width: 320px;
@@ -239,25 +269,30 @@
                     width: 173px;
                     height: 229px;
                 }
+
+                @media screen and (max-width: $small-mobile) {
+                    width: 180px;
+                    height: 200px;
+                }
             }
         }
 
         &.four {
-            top: 670px;
-
-            @media screen and (max-width: $tablet) {
-                left: 0;
-            }
+            transform: scale(2);
 
             @media screen and (max-width: $mobile) {
-                top: 0;
-                left: -60px;
+                left: 50px;
             }
 
-            transform: scale(2);
             img {
+                //ratio 1.895
                 width: 379px;
                 height: 200px;
+
+                @media screen and (max-width: $small-laptop) {
+                    width: 350px;
+                    height: 184px;
+                }
 
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                     width: 300px;
@@ -272,6 +307,11 @@
                 @media screen and (max-width: $mobile) {
                     width: 197px;
                     height: 105px;
+                }
+
+                @media screen and (max-width: $small-mobile) {
+                    width: 180px;
+                    height: 95px;
                 }
             }
         }

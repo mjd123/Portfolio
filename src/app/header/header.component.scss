@@ -7,8 +7,8 @@
     z-index: 1;
 
     @media screen and(max-width:$mobile) {
-        width: 53px;
-        height: 70px;
+        width: 90px;
+        height: 110px;
         left: 50px;
         top: 20px;
     }
@@ -20,8 +20,8 @@
     top: 60%;
 
     @media screen and(max-width:$mobile) {
-        width: 89px;
-        height: 104px;
+        width: 120px;
+        height: 140px;
     }
 }
 
@@ -43,6 +43,7 @@ header {
     background-color: $green;
 
     @media screen and(max-width:$mobile) {
+        //height: 100%;
         padding: 20px;
     }
 }
@@ -116,6 +117,11 @@ header {
             position: relative;
             z-index: 1;
 
+            @media screen and (max-width: $small-laptop) {
+                width: 450px;
+                height: initial;
+            }
+
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 400px;
             }
@@ -125,8 +131,7 @@ header {
             }
 
             @media screen and (max-width: $mobile) {
-                width: 175px;
-                height: 280px;
+                width: 200px;
             }
         }
         canvas {
@@ -141,6 +146,11 @@ header {
     text-align: center;
     color: $brown;
     position: relative;
+
+    @media screen and (max-width: $mobile) {
+        display: flex;
+        flex-direction: column;
+    }
 
     .logo {
         display: block;
@@ -158,10 +168,14 @@ header {
         line-height: 1;
         text-align: left;
         margin-bottom: 10px;
+
+        @media screen and (max-width: $mobile) {
+            margin-top: auto;
+        }
     }
 
     .sub-title {
-        font-size: 64px;
+        font-size: 46px;
         font-weight: 300;
         font-stretch: normal;
         font-style: normal;
