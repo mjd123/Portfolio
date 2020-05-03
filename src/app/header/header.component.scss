@@ -62,13 +62,8 @@ header {
         letter-spacing: normal;
         text-align: center;
         color: $brown;
-        cursor: pointer;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        backface-visibility: hidden;
-        -webkit-font-smoothing: subpixel-antialiased;
-        transition: all 0.5s ease;
+
+        @include underline-slide;
 
         @media screen and(max-width:$mobile) {
             font-size: 14px;
@@ -86,17 +81,6 @@ header {
             @media screen and(max-width:$mobile) {
                 margin-right: 15px;
             }
-        }
-
-        &:hover {
-            transform: scale(1.04);
-            transition: all 0.5s ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            backface-visibility: hidden;
-            -webkit-font-smoothing: subpixel-antialiased;
-            transform: translateZ(100);
         }
     }
 
@@ -146,6 +130,7 @@ header {
     text-align: center;
     color: $brown;
     position: relative;
+    display: grid;
 
     @media screen and (max-width: $mobile) {
         display: flex;
@@ -154,7 +139,12 @@ header {
 
     .logo {
         display: block;
-        margin-bottom: 100px;
+        margin-bottom: auto;
+
+        // //desktop
+        // @media screen and (min-width: $desktop) {
+        //     margin-bottom: auto;
+        // }
 
         @media screen and (max-width: $mobile) {
             width: 70px;
@@ -167,7 +157,9 @@ header {
 
         line-height: 1;
         text-align: left;
-        margin-bottom: 10px;
+        margin: 0 0 10px 0;
+
+        align-self: end;
 
         @media screen and (max-width: $mobile) {
             margin-top: auto;
@@ -183,6 +175,13 @@ header {
         letter-spacing: normal;
         text-align: left;
         color: $brown;
+        margin: 0;
+        align-self: end;
+
+        //desktop
+        @media screen and (min-width: $desktop) {
+            font-size: 64px;
+        }
 
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
             font-size: 40px;

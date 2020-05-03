@@ -1,18 +1,16 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = "portfolio";
+    title = 'portfolio';
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        location.reload();
+    }
 
-  ngOnInit() {}
-  scroll = (event): void => {
-    // console.log(event.documentElement);
-    //handle your scroll here
-    //notice the 'odd' function assignment to a class field
-    //this is used to be able to remove the event listener
-  };
+    ngOnInit() {}
 }

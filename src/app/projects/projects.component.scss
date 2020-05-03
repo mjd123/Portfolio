@@ -87,11 +87,6 @@
             top: 0;
         }
 
-        img {
-            width: 100%;
-            height: auto;
-        }
-
         &:hover {
             .overlay {
                 visibility: visible;
@@ -124,6 +119,7 @@
                 transition: all 0.5s ease;
                 font-size: 18px;
                 color: $white;
+                line-height: 1.2em;
 
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                     font-size: 16px;
@@ -173,30 +169,60 @@
             width: 414px;
             height: 483px;
 
+            img {
+                width: 414px;
+                height: 483px;
+            }
+
             @media screen and (max-width: $small-laptop) {
                 width: 342px;
                 height: 400px;
+
+                img {
+                    width: 342px;
+                    height: 400px;
+                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 300px;
                 height: 255px;
+
+                img {
+                    width: 300px;
+                    height: 255px;
+                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 300px;
                 height: 255px;
+
+                img {
+                    width: 300px;
+                    height: 255px;
+                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 150px;
                 height: 176px;
                 left: 0;
+
+                img {
+                    width: 150px;
+                    height: 176px;
+                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 119px;
                 height: 140px;
+
+                img {
+                    width: 119px;
+                    height: 140px;
+                }
             }
         }
 
@@ -207,64 +233,124 @@
             width: 300px;
             height: 400px;
 
+            img {
+                width: 300px;
+                height: 400px;
+            }
+
             @media screen and (max-width: $small-laptop) {
                 width: 262.5px;
                 height: 350px;
+
+                img {
+                    width: 262.5px;
+                    height: 350px;
+                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 225px;
                 height: 300px;
+
+                img {
+                    width: 225px;
+                    height: 300px;
+                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 225px;
                 height: 300px;
+
+                img {
+                    width: 225px;
+                    height: 300px;
+                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 176px;
                 height: 185px;
                 left: 50px;
+
+                img {
+                    width: 176px;
+                    height: 185px;
+                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 120px;
                 height: 160px;
+
+                img {
+                    width: 120px;
+                    height: 160px;
+                }
             }
         }
 
         &.three {
-            transform: scale(1.5);
+            transform: scale(1.25);
 
             //ratio 1.05
             width: 380px;
             height: 400px;
 
+            img {
+                width: 380px;
+                height: 400px;
+            }
+
             @media screen and (max-width: $small-laptop) {
                 width: 333px;
                 height: 350px;
+
+                img {
+                    width: 333px;
+                    height: 350px;
+                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 320px;
                 height: 304px;
+
+                img {
+                    width: 320px;
+                    height: 304px;
+                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 320px;
                 height: 304px;
+
+                img {
+                    width: 320px;
+                    height: 304px;
+                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 200px;
                 height: 190px;
                 left: 0;
+
+                img {
+                    width: 200px;
+                    height: 190px;
+                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 180px;
                 height: 200px;
+
+                img {
+                    width: 180px;
+                    height: 200px;
+                }
             }
         }
 
@@ -275,30 +361,60 @@
             width: 379px;
             height: 200px;
 
+            img {
+                width: 379px;
+                height: 200px;
+            }
+
             @media screen and (max-width: $small-laptop) {
                 width: 350px;
                 height: 184px;
+
+                img {
+                    width: 350px;
+                    height: 184px;
+                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 300px;
                 height: 152px;
+
+                img {
+                    width: 300px;
+                    height: 152px;
+                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 300px;
                 height: 152px;
+
+                img {
+                    width: 300px;
+                    height: 152px;
+                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 197px;
                 height: 105px;
                 left: 50px;
+
+                img {
+                    width: 197px;
+                    height: 105px;
+                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 180px;
                 height: 95px;
+
+                img {
+                    width: 180px;
+                    height: 95px;
+                }
             }
         }
     }

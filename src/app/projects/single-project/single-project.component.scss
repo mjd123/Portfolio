@@ -102,19 +102,8 @@
             }
 
             .text {
-                font-size: 32px;
-
-                @media screen and (max-width: 1280px) {
-                    font-size: 26px;
-                }
-
-                @media screen and (max-width: $tablet) {
-                    font-size: 20px;
-                }
-
-                @media screen and (max-width: $mobile) {
-                    font-size: 18px;
-                }
+                @include text-block;
+                color: $white;
             }
 
             .link {

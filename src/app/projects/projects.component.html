@@ -4,10 +4,11 @@
         (delete)="toggleChildComponent($event)"
         [projectsData]="singleProject"
         [projectsContainer]="projectsContainer"
+        (changeProject)="nextChildComponent($event)"
     ></app-single-project>
 
     <div class="blob-container" #canvas>
-        <img src="assets/project-blob-spotty@3x.png" />
+        <img src="assets/project-blob-spotty.png" />
     </div>
     <div class="projects-text" #projectsText>
         <p>Projects</p>

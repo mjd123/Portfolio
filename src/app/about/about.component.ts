@@ -62,7 +62,7 @@ export class AboutComponent implements OnInit {
         this.ngZone.runOutsideAngular(() =>
             blobTwo.createBlob(
                 this.canvas.last.nativeElement,
-                'rgba(245,111,79,0.8)',
+                'rgba(245,111,79,0.9)',
                 'blob-one',
                 136,
                 180,
