@@ -108,6 +108,11 @@ export class ProjectsComponent implements OnInit {
         const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
 
         const finalProjectTextWidth: any = (projectsText.width * 0.1).toFixed(0);
+        console.log(
+            this.elementChildren,
+            this.elementChildren[2].getBoundingClientRect(),
+            this.elementChildren[3].clientHeight
+        );
 
         let tweens = {
             headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {

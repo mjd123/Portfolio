@@ -67,6 +67,7 @@
 
         @media screen and (max-width: $mobile) {
             align-self: center;
+            margin-bottom: 40px;
         }
     }
     .project-container {
@@ -84,6 +85,11 @@
 
         @media screen and (max-width: $tablet) {
             top: 0;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
         }
 
         &:hover {
@@ -163,156 +169,136 @@
             //top: -50px;
             transform: scale(1.5);
 
+            //ratio 0.85
+            width: 414px;
+            height: 483px;
+
+            @media screen and (max-width: $small-laptop) {
+                width: 342px;
+                height: 400px;
+            }
+
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                width: 300px;
+                height: 255px;
+            }
+
+            @media screen and (max-width: $tablet) {
+                width: 300px;
+                height: 255px;
+            }
+
             @media screen and (max-width: $mobile) {
+                width: 150px;
+                height: 176px;
                 left: 0;
             }
 
-            img {
-                //ratio 0.85
-                width: 414px;
-                height: 483px;
-
-                @media screen and (max-width: $small-laptop) {
-                    width: 342px;
-                    height: 400px;
-                }
-
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-                    width: 300px;
-                    height: 255px;
-                }
-
-                @media screen and (max-width: $tablet) {
-                    width: 300px;
-                    height: 255px;
-                }
-
-                @media screen and (max-width: $mobile) {
-                    width: 150px;
-                    height: 176px;
-                }
-
-                @media screen and (max-width: $small-mobile) {
-                    width: 119px;
-                    height: 140px;
-                }
+            @media screen and (max-width: $small-mobile) {
+                width: 119px;
+                height: 140px;
             }
         }
 
         &.two {
             transform: scale(2);
 
+            // ratio 0.75
+            width: 300px;
+            height: 400px;
+
+            @media screen and (max-width: $small-laptop) {
+                width: 262.5px;
+                height: 350px;
+            }
+
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                width: 225px;
+                height: 300px;
+            }
+
+            @media screen and (max-width: $tablet) {
+                width: 225px;
+                height: 300px;
+            }
+
             @media screen and (max-width: $mobile) {
+                width: 176px;
+                height: 185px;
                 left: 50px;
             }
 
-            img {
-                // ratio 0.75
-                width: 300px;
-                height: 400px;
-
-                @media screen and (max-width: $small-laptop) {
-                    width: 262.5px;
-                    height: 350px;
-                }
-
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-                    width: 225px;
-                    height: 300px;
-                }
-
-                @media screen and (max-width: $tablet) {
-                    width: 225px;
-                    height: 300px;
-                }
-
-                @media screen and (max-width: $mobile) {
-                    width: 176px;
-                    height: 185px;
-                }
-
-                @media screen and (max-width: $small-mobile) {
-                    width: 120px;
-                    height: 160px;
-                }
+            @media screen and (max-width: $small-mobile) {
+                width: 120px;
+                height: 160px;
             }
         }
 
         &.three {
             transform: scale(1.5);
 
+            //ratio 1.05
+            width: 380px;
+            height: 400px;
+
+            @media screen and (max-width: $small-laptop) {
+                width: 333px;
+                height: 350px;
+            }
+
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                width: 320px;
+                height: 304px;
+            }
+
+            @media screen and (max-width: $tablet) {
+                width: 320px;
+                height: 304px;
+            }
+
             @media screen and (max-width: $mobile) {
+                width: 200px;
+                height: 190px;
                 left: 0;
             }
 
-            img {
-                //ratio 1.05
-                width: 380px;
-                height: 400px;
-
-                @media screen and (max-width: $small-laptop) {
-                    width: 333px;
-                    height: 350px;
-                }
-
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-                    width: 320px;
-                    height: 304px;
-                }
-
-                @media screen and (max-width: $tablet) {
-                    width: 320px;
-                    height: 304px;
-                }
-
-                @media screen and (max-width: $mobile) {
-                    width: 173px;
-                    height: 229px;
-                }
-
-                @media screen and (max-width: $small-mobile) {
-                    width: 180px;
-                    height: 200px;
-                }
+            @media screen and (max-width: $small-mobile) {
+                width: 180px;
+                height: 200px;
             }
         }
 
         &.four {
             transform: scale(2);
 
+            //ratio 1.895
+            width: 379px;
+            height: 200px;
+
+            @media screen and (max-width: $small-laptop) {
+                width: 350px;
+                height: 184px;
+            }
+
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                width: 300px;
+                height: 152px;
+            }
+
+            @media screen and (max-width: $tablet) {
+                width: 300px;
+                height: 152px;
+            }
+
             @media screen and (max-width: $mobile) {
+                width: 197px;
+                height: 105px;
                 left: 50px;
             }
 
-            img {
-                //ratio 1.895
-                width: 379px;
-                height: 200px;
-
-                @media screen and (max-width: $small-laptop) {
-                    width: 350px;
-                    height: 184px;
-                }
-
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-                    width: 300px;
-                    height: 152px;
-                }
-
-                @media screen and (max-width: $tablet) {
-                    width: 300px;
-                    height: 152px;
-                }
-
-                @media screen and (max-width: $mobile) {
-                    width: 197px;
-                    height: 105px;
-                }
-
-                @media screen and (max-width: $small-mobile) {
-                    width: 180px;
-                    height: 95px;
-                }
+            @media screen and (max-width: $small-mobile) {
+                width: 180px;
+                height: 95px;
             }
         }
     }
