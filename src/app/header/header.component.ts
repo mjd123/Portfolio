@@ -1,4 +1,3 @@
-import { CanvasBlobService } from './../canvas-blob.service';
 import {
     Component,
     OnInit,
