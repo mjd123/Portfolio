@@ -1,5 +1,5 @@
 import { SingleProjectComponent } from './single-project/single-project.component';
-import { element } from 'protractor';
+
 import {
     Component,
     OnInit,
@@ -100,6 +100,40 @@ export class ProjectsComponent implements OnInit {
 
     ngOnInit() {}
 
+    findX(sideOfScreen, landscapePos, elementWidth?, margin?) {
+        //landscape phones
+        if (this.width < 850 && this.height < 500) {
+            return 0 + landscapePos; //this.width / 2 - elementWidth;
+        }
+
+        if (sideOfScreen === 'right') {
+            if (this.width > 900) {
+                return this.width / 2 + margin;
+            } else {
+                return this.width / 2 - elementWidth + 60 - 30;
+            }
+        }
+
+        if (sideOfScreen === 'left') {
+            if (this.width > 900) {
+                return this.width / 2 - elementWidth - margin;
+            } else {
+                return this.width / 2 - 60 - 30;
+            }
+        }
+    }
+
+    findY(row, elementHeight, top, margin, overlap, sideOfScreen?) {
+        //landscape phones
+        if (this.width < 850 && this.height < 500) {
+            return -100;
+        }
+        if (this.width > 900) {
+            return elementHeight + margin + top;
+        } else {
+            return row - overlap + 20;
+        }
+    }
     ngAfterViewInit() {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
@@ -109,7 +143,7 @@ export class ProjectsComponent implements OnInit {
 
         const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
 
-        const finalProjectTextWidth: any = (projectsText.width * 0.1).toFixed(0);
+        // const finalProjectTextWidth: any = (projectsText.width * 0.1).toFixed(0);
 
         let tweens = {
             headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {
@@ -129,22 +163,7 @@ export class ProjectsComponent implements OnInit {
                 //opacity: 1,
                 ease: 'Power1.easeOut',
             }),
-            overlayTextChangeSubTitle: TweenMax.to(
-                '.project-container .overlay .title,.sub-title',
-                300,
-                {
-                    fontSize: '16',
-                    //css: { color: '#ffcc00' },
 
-                    //opacity: 1,
-                    ease: 'Power1.easeOut',
-                }
-            ),
-            // overlayBorderChangeSubTitle: TweenMax.to('.project-container .overlay', 300, {
-            //     border: '1px solid black',
-            //     //opacity: 1,
-            //     ease: 'Power1.easeOut',
-            // }),
             // start of projects sliding in
             startTween: TweenMax.to('.projects-text', 800, {
                 //scale: 0.3,
@@ -159,11 +178,14 @@ export class ProjectsComponent implements OnInit {
                     {
                         scale: 1,
                         z: -1500,
-                        x:
-                            this.width > 900
-                                ? this.width / 2 + 15 // center with 30px margin
-                                : this.width / 2 - this.elementChildren[2].clientWidth + 60 - 30,
-                        y: this.width > 900 ? 80 : 20,
+                        x: this.findX(
+                            'right',
+                            this.elementChildren[3].clientWidth + 15,
+                            this.elementChildren[2].clientWidth,
+                            15
+                        ),
+
+                        y: this.findY(0, 0, 0, 80, 0),
                         ease: 'Linear.easeNone',
                     }
                 ),
@@ -174,11 +196,9 @@ export class ProjectsComponent implements OnInit {
                     {
                         scale: 1,
                         z: -1500,
-                        x:
-                            this.width > 900
-                                ? this.width / 2 - this.elementChildren[3].clientWidth - 15
-                                : this.width / 2 - 60 - 30,
-                        y: this.width > 900 ? 80 : this.elementChildren[2].clientHeight - 30 + 20,
+                        x: this.findX('left', 0, this.elementChildren[3].clientWidth, 15),
+
+                        y: this.findY(this.elementChildren[2].clientHeight, 0, 0, 80, 30),
                         ease: 'Linear.easeNone',
                     }
                 ),
@@ -198,14 +218,20 @@ export class ProjectsComponent implements OnInit {
                         x:
                             this.width > 900
                                 ? this.width / 2 - this.elementChildren[4].clientWidth - 15
+                                : this.height < 500 && this.width < 850
+                                ? this.elementChildren[3].clientWidth +
+                                  this.elementChildren[2].clientWidth +
+                                  30
                                 : this.width / 2 - this.elementChildren[4].clientWidth + 60 - 30,
-                        y:
-                            this.width > 900
-                                ? this.elementChildren[3].clientHeight + 80 + 30 // 2nd project height + padding top of projects container + margin between 2nd and 3rd project
-                                : this.elementChildren[2].clientHeight +
-                                  this.elementChildren[3].clientHeight -
-                                  60 +
-                                  20,
+                        y: this.findY(
+                            this.elementChildren[2].clientHeight +
+                                this.elementChildren[3].clientHeight,
+                            this.elementChildren[3].clientHeight,
+                            30,
+                            80,
+                            60
+                        ),
+
                         ease: 'Linear.easeNone',
                     }
                 ),
@@ -219,15 +245,26 @@ export class ProjectsComponent implements OnInit {
                     {
                         scale: 1,
                         z: -1500,
-                        x: this.width > 900 ? this.width / 2 + 15 : this.width / 2 - 60 - 30, // on mobile center -  padding - margin for overlap
-                        y:
-                            this.width > 900
-                                ? this.elementChildren[2].clientHeight + 80 + 30 // 1st project height + padding top of projects container + margin between 1st and 4th project
-                                : this.elementChildren[2].clientHeight +
-                                  this.elementChildren[3].clientHeight +
-                                  this.elementChildren[4].clientHeight -
-                                  90 +
-                                  20,
+                        x: this.findX(
+                            this.width > 900 ? 'right' : 'left',
+                            this.elementChildren[3].clientWidth +
+                                this.elementChildren[2].clientWidth +
+                                this.elementChildren[4].clientWidth +
+                                45,
+
+                            0,
+                            15
+                        ),
+                        y: this.findY(
+                            this.elementChildren[2].clientHeight +
+                                this.elementChildren[3].clientHeight +
+                                this.elementChildren[4].clientHeight,
+                            this.elementChildren[2].clientHeight,
+                            30,
+                            80,
+                            90
+                        ),
+
                         ease: 'Linear.easeNone',
                     }
                 ),
@@ -237,12 +274,7 @@ export class ProjectsComponent implements OnInit {
         let timelineTwo = new TimelineMax();
 
         timeline.add([tweens.headerColorFadeOut]);
-        timelineTwo.add([
-            tweens.projectsColorFadeOut,
-            //tweens.overlayTextChangeTitle,
-            //tweens.overlayTextChangeSubTitle,
-            //tweens.overlayBorderChangeSubTitle,
-        ]);
+        timelineTwo.add([tweens.projectsColorFadeOut]);
 
         // header color fade
         new ScrollMagic.Scene({

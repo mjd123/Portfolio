@@ -20,6 +20,10 @@
         font-size: 200px;
     }
 
+    @media screen and(max-height: 750px) {
+        font-size: 120px;
+    }
+
     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
         font-size: 100px;
     }
@@ -36,6 +40,11 @@
     @media screen and (max-width: $small-mobile) {
         font-size: 52px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 70px;
+        line-height: 1;
+    }
 }
 
 @mixin text-block {
@@ -45,6 +54,11 @@
     font-style: normal;
     line-height: 1.78;
     letter-spacing: normal;
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 14px;
+        line-height: 1.71;
+    }
 
     @media screen and (max-width: $mobile) {
         font-size: 14px;

@@ -87,6 +87,10 @@
                     font-size: 60px;
                 }
 
+                @media only screen and (max-width: 850px) and (orientation: landscape) {
+                    font-size: 52px;
+                }
+
                 @media screen and (max-width: $mobile) {
                     font-size: 52px;
                 }
@@ -104,10 +108,17 @@
             .text {
                 @include text-block;
                 color: $white;
+
+                @media only screen and (max-width: 850px) and (orientation: landscape) {
+                    margin-bottom: 20px;
+                }
             }
 
             .link {
                 @media screen and (max-width: $tablet) {
+                    font-size: 16px;
+                }
+                @media only screen and (max-width: 850px) and (orientation: landscape) {
                     font-size: 16px;
                 }
             }
@@ -116,6 +127,10 @@
         .project-nav {
             display: flex;
             justify-content: space-between;
+
+            @media only screen and (max-width: 850px) and (orientation: landscape) {
+                margin-top: 30px;
+            }
 
             a {
                 @media screen and (max-width: $tablet) {
