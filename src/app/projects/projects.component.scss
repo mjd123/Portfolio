@@ -204,69 +204,39 @@
             height: 483px;
 
             img {
-                width: 414px;
-                height: 483px;
+                width: 100%;
+                height: 100%;
             }
 
             @media screen and (max-width: $small-laptop) {
                 width: 342px;
                 height: 400px;
-
-                img {
-                    width: 342px;
-                    height: 400px;
-                }
             }
 
             @media screen and(max-height: 750px) {
                 width: 289px;
                 height: 340px;
-
-                img {
-                    width: 289px;
-                    height: 340px;
-                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 300px;
                 height: 255px;
-
-                img {
-                    width: 300px;
-                    height: 255px;
-                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 300px;
                 height: 255px;
-
-                img {
-                    width: 300px;
-                    height: 255px;
-                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 150px;
                 height: 176px;
                 left: 0;
-
-                img {
-                    width: 150px;
-                    height: 176px;
-                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 119px;
                 height: 140px;
-
-                img {
-                    width: 119px;
-                    height: 140px;
-                }
             }
 
             @media only screen and (max-width: 850px) and (orientation: landscape) {
@@ -288,78 +258,44 @@
             height: 400px;
 
             img {
-                width: 300px;
-                height: 400px;
+                width: 100%;
+                height: 100%;
             }
 
             @media screen and (max-width: $small-laptop) {
                 width: 262.5px;
                 height: 350px;
-
-                img {
-                    width: 262.5px;
-                    height: 350px;
-                }
             }
 
             @media screen and(max-height: 750px) {
                 width: 240px;
                 height: 320px;
-                img {
-                    width: 240px;
-                    height: 320px;
-                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 225px;
                 height: 300px;
-
-                img {
-                    width: 225px;
-                    height: 300px;
-                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 225px;
                 height: 300px;
-
-                img {
-                    width: 225px;
-                    height: 300px;
-                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 176px;
                 height: 185px;
                 left: 50px;
-
-                img {
-                    width: 176px;
-                    height: 185px;
-                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 120px;
                 height: 160px;
-
-                img {
-                    width: 120px;
-                    height: 160px;
-                }
             }
 
             @media only screen and (max-width: 850px) and (orientation: landscape) {
                 width: 120px;
                 height: 160px;
-
-                img {
-                    width: 120px;
-                    height: 160px;
-                }
             }
         }
 
@@ -371,79 +307,44 @@
             height: 400px;
 
             img {
-                width: 380px;
-                height: 400px;
+                width: 100%;
+                height: 100%;
             }
 
             @media screen and (max-width: $small-laptop) {
                 width: 314px;
                 height: 350px;
-
-                img {
-                    width: 314px;
-                    height: 330px;
-                }
             }
 
             @media screen and(max-height: 750px) {
                 width: 266px;
                 height: 280px;
-
-                img {
-                    width: 266px;
-                    height: 280px;
-                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 266px;
                 height: 280px;
-
-                img {
-                    width: 266px;
-                    height: 280px;
-                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 320px;
                 height: 304px;
-
-                img {
-                    width: 320px;
-                    height: 304px;
-                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 200px;
                 height: 190px;
                 left: 0;
-
-                img {
-                    width: 200px;
-                    height: 190px;
-                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 143px;
                 height: 150px;
-
-                img {
-                    width: 143px;
-                    height: 150px;
-                }
             }
 
             @media only screen and (max-width: 850px) and (orientation: landscape) {
                 width: 143px;
                 height: 150px;
-
-                img {
-                    width: 143px;
-                    height: 150px;
-                }
             }
         }
 
@@ -455,78 +356,44 @@
             height: 200px;
 
             img {
-                width: 379px;
-                height: 200px;
+                width: 100%;
+                height: 100%;
             }
 
             @media screen and (max-width: $small-laptop) {
                 width: 350px;
                 height: 184px;
-
-                img {
-                    width: 350px;
-                    height: 184px;
-                }
             }
 
             @media screen and(max-height: 750px) {
                 width: 284.5px;
                 height: 150px;
-                img {
-                    width: 284.5px;
-                    height: 150px;
-                }
             }
 
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
                 width: 300px;
                 height: 152px;
-
-                img {
-                    width: 300px;
-                    height: 152px;
-                }
             }
 
             @media screen and (max-width: $tablet) {
                 width: 300px;
                 height: 152px;
-
-                img {
-                    width: 300px;
-                    height: 152px;
-                }
             }
 
             @media screen and (max-width: $mobile) {
                 width: 197px;
                 height: 105px;
                 left: 50px;
-
-                img {
-                    width: 197px;
-                    height: 105px;
-                }
             }
 
             @media screen and (max-width: $small-mobile) {
                 width: 180px;
                 height: 95px;
-
-                img {
-                    width: 180px;
-                    height: 95px;
-                }
             }
 
             @media only screen and (max-width: 850px) and (orientation: landscape) {
                 width: 180px;
                 height: 95px;
-
-                img {
-                    width: 180px;
-                    height: 95px;
-                }
             }
         }
     }
