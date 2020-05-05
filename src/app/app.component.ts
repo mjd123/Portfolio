@@ -7,10 +7,10 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
     title = 'portfolio';
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        location.reload();
-    }
+    // @HostListener('window:resize', ['$event'])
+    // onResize(event) {
+    //     location.reload();
+    // }
 
     ngOnInit() {}
 }
