@@ -174,7 +174,7 @@ export class ProjectsComponent implements OnInit {
                 new TimelineMax().fromTo(
                     '.one',
                     8000,
-                    { x: this.width - this.elementChildren[2].clientWidth / 2, y: -50 },
+                    { x: this.width - this.elementChildren[2].clientWidth / 2, y: -50, scale: 1.5 },
                     {
                         scale: 1,
                         z: -1500,
@@ -192,7 +192,7 @@ export class ProjectsComponent implements OnInit {
                 new TimelineMax().fromTo(
                     '.two',
                     1000,
-                    { x: 0 - this.width - this.elementChildren[3].clientWidth, y: 0 },
+                    { x: 0 - this.width - this.elementChildren[3].clientWidth, y: 0, scale: 2 },
                     {
                         scale: 1,
                         z: -1500,
@@ -211,6 +211,7 @@ export class ProjectsComponent implements OnInit {
                                 ? this.width - this.elementChildren[4].clientWidth / 4
                                 : this.width - this.elementChildren[4].clientWidth / 10,
                         y: this.height - 30 + 20,
+                        scale: 1.25,
                     },
                     {
                         scale: 1,
@@ -241,6 +242,7 @@ export class ProjectsComponent implements OnInit {
                     {
                         x: this.width + this.elementChildren[4].clientWidth * 2,
                         y: this.height - 50,
+                        scale: 2,
                     },
                     {
                         scale: 1,
