@@ -126,7 +126,7 @@ export class ProjectsComponent implements OnInit {
     findY(row, elementHeight, top, margin, overlap, sideOfScreen?) {
         //landscape phones
         if (this.width < 850 && this.height < 500) {
-            return -100;
+            return 0;
         }
         if (this.width > 900) {
             return elementHeight + margin + top;
@@ -291,7 +291,7 @@ export class ProjectsComponent implements OnInit {
         //container
         new ScrollMagic.Scene({
             triggerElement: '.projects',
-            duration: this.width > 900 ? this.height * 2.1 : this.height * 1.8, // the scene should last for a scroll distance of 100px
+            duration: this.width > 900 ? this.height * 2.1 : this.height * 1.6, // the scene should last for a scroll distance of 100px
             offset: this.width > 900 ? 550 : this.height / 2, // start this scene after scrolling for 50px
         })
             .addIndicators()
