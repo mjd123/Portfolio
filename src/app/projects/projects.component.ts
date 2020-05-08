@@ -1,4 +1,6 @@
+import { ProjectsDataService } from './../services/projects-data.service';
 import { SingleProjectComponent } from './single-project/single-project.component';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import {
     Component,
@@ -16,73 +18,58 @@ import {
 } from '@angular/core';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
-
 import { TweenMax, TimelineMax } from 'gsap';
-
 import ScrollMagic from 'ScrollMagic';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
-
-//import { TweenLite } from "gsap";
-//import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-//import "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
-import { timingSafeEqual } from 'crypto';
+
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
 @Component({
     selector: 'app-projects',
     templateUrl: './projects.component.html',
     styleUrls: ['./projects.component.scss'],
+    //     animations: [
+    //         trigger('changeDivSize', [
+    //             state(
+    //                 'false',
+    //                 style({
+    //                     backgroundColor: 'green',
+    //                     width: '100%',
+    //                     height: '100%',
+    //                 })
+    //             ),
+    //             state(
+    //                 'true',
+    //                 style({
+    //                     backgroundColor: 'red',
+    //                 })
+    //             ),
+    //             transition('false=>true', animate('1500ms')),
+    //             transition('true=>false', animate('1000ms')),
+    //         ]),
+    //     ],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
     @ViewChild('projectsText', { static: true }) projectsText: ElementRef;
-    @ViewChildren('projects') projects: QueryList<any>;
+    @ViewChildren('projects') projects: QueryList<ElementRef>;
     @ViewChild('canvas', { static: true }) canvas: ElementRef;
     @ViewChildren('overlayTitle') overlayTitle: ElementRef;
     @Input() delete: boolean = true;
 
     projectsContainer: HTMLElement;
-
-    singleProjects: any = [
-        {
-            text: {
-                title: 'El pastor',
-                subTitle: 'javascript • css • website',
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-            },
-            image: {
-                src: 'https://via.placeholder.com/460',
-                alt: 'picture of project',
-                url: '1',
-            },
-        },
-        {
-            text: {
-                title: 'Creative Family',
-                subTitle: 'javascript • css • website',
-                text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-            },
-            image: {
-                src: 'https://via.placeholder.com/460',
-                alt: 'picture of project',
-                url: '1',
-            },
-        },
-    ];
-
+    singleProjects: any;
     singleProject: any;
     currentSingleProjectIndex: number;
+    currentState = 'initial';
 
+    // to go into service
     images = [
         'https://via.placeholder.com/460',
         'https://via.placeholder.com/460',
         'https://via.placeholder.com/460',
         'https://via.placeholder.com/460',
     ];
-
-    public ScrollMagic: any;
 
     controller = new ScrollMagic.Controller();
     width: number;
@@ -93,9 +80,11 @@ export class ProjectsComponent implements OnInit {
         private renderer: Renderer2,
         private el: ElementRef,
         private ngZone: NgZone,
-        private CanvasBlob: CanvasBlob
+        // private CanvasBlob: CanvasBlob,
+        private projectsData: ProjectsDataService
     ) {
-        this.ScrollMagic = require('scrollmagic');
+        super();
+        this.singleProjects = this.projectsData.singleProjects;
     }
 
     ngOnInit() {}
@@ -103,6 +92,7 @@ export class ProjectsComponent implements OnInit {
     findX(sideOfScreen, landscapePos, elementWidth?, margin?) {
         //landscape phones
         if (this.width < 850 && this.height < 500) {
+            return this.width / 2 + landscapePos;
             return 0 + landscapePos; //this.width / 2 - elementWidth;
         }
 
@@ -131,242 +121,244 @@ export class ProjectsComponent implements OnInit {
         if (this.width > 900) {
             return elementHeight + margin + top;
         } else {
-            return row - overlap + 20;
+            return this.height / 2 - row;
         }
     }
+
     ngAfterViewInit() {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.elementChildren = this.projects.last.nativeElement.children;
 
-        this.projectsContainer = this.projects.last.nativeElement;
+        setTimeout(() => {
+            this.elementChildren = this.projects.last.nativeElement.children;
 
-        const projectsText = this.projectsText.nativeElement.getBoundingClientRect();
+            this.projectsContainer = this.projects.last.nativeElement;
 
-        // const finalProjectTextWidth: any = (projectsText.width * 0.1).toFixed(0);
+            let tweens = {
+                headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {
+                    backgroundColor: '#f5eee2',
+                    immediateRender: false,
+                }),
+                projectsColorFadeOut: TweenMax.to('.projects ,body,.app-content, .about ', 300, {
+                    backgroundColor: '#006b64',
+                    //opacity: 1,
+                    immediateRender: false,
+                }),
 
-        let tweens = {
-            headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {
-                backgroundColor: '#f5eee2',
-                //opacity: 1,
-                ease: 'Power1.easeOut',
-            }),
-            projectsColorFadeOut: TweenMax.to('.projects ,body,.app-content, .about ', 300, {
-                backgroundColor: '#006b64',
-                //opacity: 1,
-                ease: 'Power1.easeOut',
-            }),
-            overlayTextChangeTitle: TweenMax.to('.project-container .overlay .title', 300, {
-                fontSize: '30',
-                color: 'black',
+                // start of projects sliding in
+                startTween: TweenMax.to('.projects-text', 800, {
+                    opacity: 0,
+                    overwrite: 'auto',
+                    immediateRender: false,
+                }),
+                wipeAnimations: [
+                    new TimelineMax().fromTo(
+                        '.one',
+                        8000,
+                        {
+                            x: this.width - this.elementChildren[2].clientWidth / 2,
+                            y: -50,
+                            scale: 1.5,
+                        },
+                        {
+                            scale: 1,
 
-                //opacity: 1,
-                ease: 'Power1.easeOut',
-            }),
+                            x: this.findX(
+                                'right',
+                                0 - this.elementChildren[2].clientWidth - 7.5,
+                                this.elementChildren[2].clientWidth,
+                                15
+                            ),
 
-            // start of projects sliding in
-            startTween: TweenMax.to('.projects-text', 800, {
-                //scale: 0.3,
-                opacity: 0,
-                ease: 'Linear.easeNone',
-            }),
-            wipeAnimations: [
-                new TimelineMax().fromTo(
-                    '.one',
-                    8000,
-                    { x: this.width - this.elementChildren[2].clientWidth / 2, y: -50, scale: 1.5 },
-                    {
-                        scale: 1,
-                        z: -1500,
-                        x: this.findX(
-                            'right',
-                            this.elementChildren[3].clientWidth + 15,
-                            this.elementChildren[2].clientWidth,
-                            15
-                        ),
-
-                        y: this.findY(0, 0, 0, 80, 0),
-                        ease: 'Linear.easeNone',
-                    }
-                ),
-                new TimelineMax().fromTo(
-                    '.two',
-                    1000,
-                    { x: 0 - this.width - this.elementChildren[3].clientWidth, y: 0, scale: 2 },
-                    {
-                        scale: 1,
-                        z: -1500,
-                        x: this.findX('left', 0, this.elementChildren[3].clientWidth, 15),
-
-                        y: this.findY(this.elementChildren[2].clientHeight, 0, 0, 80, 30),
-                        ease: 'Linear.easeNone',
-                    }
-                ),
-                new TimelineMax().fromTo(
-                    '.three',
-                    500,
-                    {
-                        x:
-                            this.width > 900
-                                ? this.width - this.elementChildren[4].clientWidth / 4
-                                : this.width - this.elementChildren[4].clientWidth / 10,
-                        y: this.height - 30 + 20,
-                        scale: 1.25,
-                    },
-                    {
-                        scale: 1,
-                        z: -1500,
-                        x:
-                            this.width > 900
-                                ? this.width / 2 - this.elementChildren[4].clientWidth - 15
-                                : this.height < 500 && this.width < 850
-                                ? this.elementChildren[3].clientWidth +
-                                  this.elementChildren[2].clientWidth +
-                                  30
-                                : this.width / 2 - this.elementChildren[4].clientWidth + 60 - 30,
-                        y: this.findY(
-                            this.elementChildren[2].clientHeight +
-                                this.elementChildren[3].clientHeight,
-                            this.elementChildren[3].clientHeight,
-                            30,
-                            80,
-                            60
-                        ),
-
-                        ease: 'Linear.easeNone',
-                    }
-                ),
-                new TimelineMax().fromTo(
-                    '.four',
-                    2500,
-                    {
-                        x: this.width + this.elementChildren[4].clientWidth * 2,
-                        y: this.height - 50,
-                        scale: 2,
-                    },
-                    {
-                        scale: 1,
-                        z: -1500,
-                        x: this.findX(
-                            this.width > 900 ? 'right' : 'left',
-                            this.elementChildren[3].clientWidth +
-                                this.elementChildren[2].clientWidth +
-                                this.elementChildren[4].clientWidth +
-                                45,
-
-                            0,
-                            15
-                        ),
-                        y: this.findY(
-                            this.elementChildren[2].clientHeight +
+                            y: this.findY(
                                 this.elementChildren[3].clientHeight +
-                                this.elementChildren[4].clientHeight,
-                            this.elementChildren[2].clientHeight,
-                            30,
-                            80,
-                            90
-                        ),
+                                    this.elementChildren[2].clientHeight -
+                                    48,
+                                0,
+                                0,
+                                80,
+                                0
+                            ),
+                            overwrite: false,
+                        }
+                    ),
+                    new TimelineMax().fromTo(
+                        '.two',
+                        1000,
+                        { x: 0 - this.width - this.elementChildren[3].clientWidth, y: 0, scale: 2 },
+                        {
+                            scale: 1,
 
-                        ease: 'Linear.easeNone',
-                    }
-                ),
-            ],
-        };
-        let timeline = new TimelineMax();
-        let timelineTwo = new TimelineMax();
+                            x: this.findX(
+                                'left',
+                                0 -
+                                    (this.elementChildren[2].clientWidth +
+                                        this.elementChildren[3].clientWidth) -
+                                    22.5,
+                                this.elementChildren[3].clientWidth,
+                                15
+                            ),
 
-        timeline.add([tweens.headerColorFadeOut]);
-        timelineTwo.add([tweens.projectsColorFadeOut]);
+                            y: this.findY(this.elementChildren[3].clientHeight - 24, 0, 0, 80, 30),
+                            overwrite: false,
+                        }
+                    ),
+                    new TimelineMax().fromTo(
+                        '.three',
+                        500,
+                        {
+                            x:
+                                this.width > 900
+                                    ? this.width - this.elementChildren[4].clientWidth / 4
+                                    : this.width - this.elementChildren[4].clientWidth / 10,
+                            y: this.height - 30 + 20,
+                            scale: 1.25,
+                        },
+                        {
+                            scale: 1,
 
-        // header color fade
-        new ScrollMagic.Scene({
-            triggerHook: 0,
-            duration: 800, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 200 : 0, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(timeline)
+                            x:
+                                this.width > 900
+                                    ? this.width / 2 - this.elementChildren[4].clientWidth - 15
+                                    : this.height < 500 && this.width < 850
+                                    ? this.width / 2 + 7.5
+                                    : this.width / 2 -
+                                      this.elementChildren[4].clientWidth +
+                                      60 -
+                                      30,
+                            y: this.findY(0, this.elementChildren[3].clientHeight, 30, 80, 60),
+                            overwrite: false,
+                        }
+                    ),
+                    new TimelineMax().fromTo(
+                        '.four',
+                        2500,
+                        {
+                            x: this.width + this.elementChildren[4].clientWidth * 2,
+                            y: this.height - 50,
+                            scale: 2,
+                        },
+                        {
+                            scale: 1,
 
-            //.setPin('.projects-text, .projects') // pins the element for the the scene's duration
-            .addTo(this.controller); // assign the scene to the controller
+                            x: this.findX(
+                                this.width > 900 ? 'right' : 'left',
+                                this.elementChildren[4].clientWidth + 22.5,
+                                0,
+                                15
+                            ),
+                            y: this.findY(
+                                0 - this.elementChildren[4].clientHeight + 24,
+                                this.elementChildren[2].clientHeight,
+                                30,
+                                80,
+                                90
+                            ),
+                            overwrite: false,
+                        }
+                    ),
+                ],
+            };
+            let timeline = new TimelineMax();
+            let timelineTwo = new TimelineMax();
 
-        //container
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height * 2.1 : this.height * 1.6, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 550 : this.height / 2, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.startTween)
+            timeline.add([tweens.headerColorFadeOut]);
+            timelineTwo.add([tweens.projectsColorFadeOut]);
 
-            .setPin('.projects-text, .projects') // pins the element for the the scene's duration
-            .addTo(this.controller); // assign the scene to the controller
+            // header color fade
+            new ScrollMagic.Scene({
+                triggerHook: 0,
+                duration: 800, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 200 : 0, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(timeline)
+                .addTo(this.controller); // assign the scene to the controller
 
-        // text scale
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height * 1.5 : this.height, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 550 : 600, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.startTween)
+            //container
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height * 2.1 : this.height * 1.6, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 550 : this.height / 2, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.startTween)
+                .setPin('.projects-text, .projects') // pins the element for the the scene's duration
+                .addTo(this.controller); // assign the scene to the controller
 
-            //.setPin(".projects-text, .projects") // pins the element for the the scene's duration
-            .addTo(this.controller); // assign the scene to the controller
+            // text scale
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height * 1.5 : this.height, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 550 : 600, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.startTween)
+                .addTo(this.controller); // assign the scene to the controller
 
-        // project image
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.wipeAnimations[0])
-            .addTo(this.controller); // assign the scene to the controller
+            // project image
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.wipeAnimations[0])
+                .addTo(this.controller); // assign the scene to the controller
 
-        // project image
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.wipeAnimations[1])
-            .addTo(this.controller); // assign the scene to the controller
+            // project image
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.wipeAnimations[1])
+                .addTo(this.controller); // assign the scene to the controller
 
-        // project image
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 700 : 500, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.wipeAnimations[2])
-            .addTo(this.controller); // assign the scene to the controller
+            // project image
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 700 : 500, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.wipeAnimations[2])
+                .addTo(this.controller); // assign the scene to the controller
 
-        // project image
-        new ScrollMagic.Scene({
-            triggerElement: '.projects',
-            duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
-            offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(tweens.wipeAnimations[3])
-            .addTo(this.controller); // assign the scene to the controller
+            // project image
+            new ScrollMagic.Scene({
+                triggerElement: '.projects',
+                duration: this.width > 900 ? this.height : this.height, // the scene should last for a scroll distance of 100px
+                offset: this.width > 900 ? 800 : 500, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(tweens.wipeAnimations[3])
+                .addTo(this.controller); // assign the scene to the controller
 
-        new ScrollMagic.Scene({
-            triggerElement: '.about',
-            duration: 600, // the scene should last for a scroll distance of 100px
-            offset: -200, // start this scene after scrolling for 50px
-        })
-            .addIndicators()
-            .setTween(timelineTwo)
-            .addTo(this.controller); // assign the scene to the controller
+            new ScrollMagic.Scene({
+                triggerElement: '.about',
+                duration: 600, // the scene should last for a scroll distance of 100px
+                offset: -200, // start this scene after scrolling for 50px
+            })
+                .addIndicators()
+                .setTween(timelineTwo)
+                .addTo(this.controller); // assign the scene to the controller
+        }, 50);
 
         let blobOne = new CanvasBlob();
 
         this.ngZone.runOutsideAngular(() =>
-            blobOne.createBlob(this.canvas.nativeElement, '#f56f4f', 'blob-one', 136, 180, 180)
+            blobOne.createBlob(
+                this.canvas.nativeElement,
+                '#f56f4f',
+                'blob-one',
+                136,
+                180,
+                190,
+                10,
+                10
+            )
         );
     }
 

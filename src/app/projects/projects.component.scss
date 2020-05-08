@@ -29,14 +29,15 @@
 
 .projects {
     position: relative;
-    -webkit-perspective: 1000;
-    perspective: 1000;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 100vh;
     padding: 60px;
     background-color: $green;
+    // -webkit-transform: translate3d(0, 0, 0);
+    // -webkit-backface-visibility: hidden;
+    // -webkit-perspective: 1000;
 
     @media screen and (max-height: 750px) {
         height: initial;
@@ -202,6 +203,9 @@
             //ratio 0.85
             width: 414px;
             height: 483px;
+
+            max-width: 414px;
+            max-height: 483px;
 
             img {
                 width: 100%;

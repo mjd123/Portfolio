@@ -9,10 +9,6 @@ import {
     ElementRef,
     Renderer2,
 } from '@angular/core';
-import { TweenMax, TimelineMax } from 'gsap';
-
-import ScrollMagic from 'ScrollMagic';
-import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 
 @Component({
     selector: 'app-single-project',
@@ -26,8 +22,6 @@ export class SingleProjectComponent implements OnInit {
     @ViewChild('singleProjectContainer', { static: true })
     singleProjectContainer: ElementRef;
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-    controller = new ScrollMagic.Controller();
 
     constructor(private renderer: Renderer2, private el: ElementRef) {}
 

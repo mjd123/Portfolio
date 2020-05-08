@@ -14,7 +14,7 @@
         <p>Projects</p>
     </div>
 
-    <div class="project-container one" (click)="toggleChildComponent(0)">
+    <div class="project-container one" [@changeDivSize]="delete" (click)="toggleChildComponent(0)">
         <div class="overlay" (mouseenter)="isOverflown($event)">
             <p class="title" #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
             <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
