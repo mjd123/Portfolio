@@ -1,7 +1,7 @@
 <section class="single-project-container" #singleProjectContainer>
     <div class="image-container">
-        <video autoplay loop muted preload="metadata">
-            <source [src]="projectsData?.image.video" type="video/mp4" />
+        <video autoplay loop muted playsinline preload="metadata">
+            <source src="{{ projectsData?.image.video }}" type="video/mp4" />
         </video>
     </div>
     <div class="text-container">
