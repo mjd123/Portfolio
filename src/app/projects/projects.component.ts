@@ -65,7 +65,7 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
 
     // to go into service
     images = [
-        'https://via.placeholder.com/460',
+        'assets/el_pastor.png',
         'https://via.placeholder.com/460',
         'https://via.placeholder.com/460',
         'https://via.placeholder.com/460',
@@ -133,6 +133,7 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
             this.elementChildren = this.projects.last.nativeElement.children;
 
             this.projectsContainer = this.projects.last.nativeElement;
+            console.log(this.elementChildren[3].getBoundingClientRect());
 
             let tweens = {
                 headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {
@@ -141,7 +142,6 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
                 }),
                 projectsColorFadeOut: TweenMax.to('.projects ,body,.app-content, .about ', 300, {
                     backgroundColor: '#006b64',
-                    //opacity: 1,
                     immediateRender: false,
                 }),
 
@@ -344,7 +344,7 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
                 .addIndicators()
                 .setTween(timelineTwo)
                 .addTo(this.controller); // assign the scene to the controller
-        }, 50);
+        }, 100);
 
         let blobOne = new CanvasBlob();
 
@@ -385,6 +385,7 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
             } else {
                 this.currentSingleProjectIndex += 1;
                 this.singleProject = this.singleProjects[this.currentSingleProjectIndex];
+                console.log(this.singleProject);
             }
         } else {
             if (this.currentSingleProjectIndex === 0) {

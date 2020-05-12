@@ -30,6 +30,7 @@
     position: absolute;
     left: -10%;
     top: 60%;
+    z-index: 1;
 
     @media screen and(max-height: 750px) {
         width: 200px;
@@ -194,10 +195,10 @@ header {
         display: block;
         margin-bottom: auto;
 
-        // //desktop
-        // @media screen and (min-width: $desktop) {
-        //     margin-bottom: auto;
-        // }
+        @media screen and (max-width: $small-laptop) {
+            width: 120px;
+            height: auto;
+        }
 
         @media screen and (max-width: $mobile) {
             width: 70px;
@@ -234,7 +235,7 @@ header {
         text-align: left;
         color: $brown;
         margin: 0;
-        align-self: end;
+        //align-self: end;
 
         //desktop
         @media screen and (min-width: $desktop) {
@@ -242,7 +243,7 @@ header {
         }
 
         @media screen and(max-height: 750px) {
-            font-size: 52px;
+            font-size: 40px;
         }
 
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {

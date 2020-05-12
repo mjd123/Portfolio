@@ -34,7 +34,6 @@ export class CanvasBlob {
         var c = circ;
 
         var count = Math.PI * 2;
-        console.log(count);
 
         let drawBezierCircle = (circleX, circleY, radius, modifier) => {
             var c;

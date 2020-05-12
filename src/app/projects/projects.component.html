@@ -14,32 +14,32 @@
         <p>Projects</p>
     </div>
 
-    <div class="project-container one" [@changeDivSize]="delete" (click)="toggleChildComponent(0)">
+    <div class="project-container one" (click)="toggleChildComponent(0)">
         <div class="overlay" (mouseenter)="isOverflown($event)">
             <p class="title" #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
             <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
         </div>
-        <img src="https://via.placeholder.com/460" alt="" />
+        <img src="{{ singleProjects[0]?.image.src }}" alt="" />
     </div>
     <div class="project-container two" (click)="toggleChildComponent(1)">
         <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
-        </div>
-        <img src="https://via.placeholder.com/460" alt="" />
-    </div>
-    <div class="project-container three" (click)="this.delete = false">
-        <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
-        </div>
-        <img src="https://via.placeholder.com/460" alt="" />
-    </div>
-    <div class="project-container four" (click)="this.delete = false">
-        <div class="overlay" (mouseenter)="isOverflown($event)">
             <p class="title" #overlayTitle>{{ singleProjects[1]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
+            <p class="sub-title">{{ singleProjects[1]?.text.subTitle }}</p>
         </div>
-        <img src="https://via.placeholder.com/460" alt="" />
+        <img src="{{ singleProjects[1]?.image.src }}" alt="" />
+    </div>
+    <div class="project-container three" (click)="toggleChildComponent(2)">
+        <div class="overlay" (mouseenter)="isOverflown($event)">
+            <p class="title" #overlayTitle>{{ singleProjects[2]?.text.title }}</p>
+            <p class="sub-title">{{ singleProjects[2]?.text.subTitle }}</p>
+        </div>
+        <img src="{{ singleProjects[2]?.image.src }}" alt="" />
+    </div>
+    <div class="project-container four" (click)="toggleChildComponent(3)">
+        <div class="overlay" (mouseenter)="isOverflown($event)">
+            <p class="title" #overlayTitle>{{ singleProjects[3]?.text.title }}</p>
+            <p class="sub-title">{{ singleProjects[3]?.text.subTitle }}</p>
+        </div>
+        <img src="{{ singleProjects[3]?.image.src }}" alt="" />
     </div>
 </section>

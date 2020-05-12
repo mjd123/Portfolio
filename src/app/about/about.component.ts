@@ -1,4 +1,4 @@
-import { BlobService } from './../blob.service';
+import { CanvasBlob } from '../animations/blob-canvas-animation';
 import {
     Component,
     OnInit,
@@ -8,7 +8,6 @@ import {
     ViewChildren,
     QueryList,
 } from '@angular/core';
-import { CanvasBlob } from '../animations/blob-canvas-animation';
 
 @Component({
     selector: 'app-about',
@@ -18,17 +17,11 @@ import { CanvasBlob } from '../animations/blob-canvas-animation';
 export class AboutComponent implements OnInit {
     @ViewChildren('canvas') canvas: QueryList<any>;
 
-    constructor(
-        private BlobService: BlobService,
-        private ngZone: NgZone,
-        private CanvasBlob: CanvasBlob
-    ) {}
+    constructor(private ngZone: NgZone, private CanvasBlob: CanvasBlob) {}
 
     ngOnInit() {}
 
     ngAfterViewInit() {
-        console.log('in here', this.canvas);
-
         let blobOne = new CanvasBlob();
         let blobTwo = new CanvasBlob();
 
