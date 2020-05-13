@@ -14,32 +14,37 @@
         <p>Projects</p>
     </div>
 
-    <div class="project-container one" (click)="toggleChildComponent(0)">
+    <div class="project-container one" (click)="toggleChildComponent('saffron')">
         <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[0]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[0]?.text.subTitle }}</p>
+            <p class="title" #overlayTitle>{{ singleProjects.saffron.text.title }}</p>
+            <p class="sub-title">{{ singleProjects.saffron.text.subTitle }}</p>
         </div>
-        <img src="{{ singleProjects[0]?.image.src }}" alt="" />
+
+        <img
+            src="{{ singleProjects.saffron.image.src }}"
+            alt="Project Image"
+            (load)="onImageLoad($event)"
+        />
     </div>
-    <div class="project-container two" (click)="toggleChildComponent(1)">
+    <div class="project-container two" (click)="toggleChildComponent('elPastor')">
         <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[1]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[1]?.text.subTitle }}</p>
+            <p class="title" #overlayTitle>{{ singleProjects.elPastor.text.title }}</p>
+            <p class="sub-title">{{ singleProjects.elPastor.text.subTitle }}</p>
         </div>
-        <img src="{{ singleProjects[1]?.image.src }}" alt="" />
+        <img src="{{ singleProjects.elPastor.image.src }}" alt="Project Image" />
     </div>
-    <div class="project-container three" (click)="toggleChildComponent(2)">
+    <div class="project-container three" (click)="toggleChildComponent('creativeFamily')">
         <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[2]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[2]?.text.subTitle }}</p>
+            <p class="title" #overlayTitle>{{ singleProjects.creativeFamily.text.title }}</p>
+            <p class="sub-title">{{ singleProjects.creativeFamily.text.subTitle }}</p>
         </div>
-        <img src="{{ singleProjects[2]?.image.src }}" alt="" />
+        <img src="{{ singleProjects.creativeFamily.image.src }}" alt="Project Image" />
     </div>
-    <div class="project-container four" (click)="toggleChildComponent(3)">
+    <div class="project-container four" (click)="toggleChildComponent('oneSohoPlace')">
         <div class="overlay" (mouseenter)="isOverflown($event)">
-            <p class="title" #overlayTitle>{{ singleProjects[3]?.text.title }}</p>
-            <p class="sub-title">{{ singleProjects[3]?.text.subTitle }}</p>
+            <p class="title" #overlayTitle>{{ singleProjects.oneSohoPlace.text.title }}</p>
+            <p class="sub-title">{{ singleProjects.oneSohoPlace.text.subTitle }}</p>
         </div>
-        <img src="{{ singleProjects[3]?.image.src }}" alt="" />
+        <img src="{{ singleProjects.oneSohoPlace.image.src }}" alt="Project Image" />
     </div>
 </section>

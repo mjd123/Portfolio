@@ -1,5 +1,5 @@
-import { ProjectsDataService } from './../services/projects-data.service';
-import { SingleProjectComponent } from './single-project/single-project.component';
+import projectData from '../../assets/project-data/projects.json';
+
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import {
@@ -15,6 +15,7 @@ import {
     Input,
     Renderer2,
     NgZone,
+    ChangeDetectorRef,
 } from '@angular/core';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
@@ -50,7 +51,7 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
     //         ]),
     //     ],
 })
-export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
+export class ProjectsComponent extends CanvasBlob {
     @ViewChild('projectsText', { static: true }) projectsText: ElementRef;
     @ViewChildren('projects') projects: QueryList<ElementRef>;
     @ViewChild('canvas', { static: true }) canvas: ElementRef;
@@ -58,33 +59,18 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
     @Input() delete: boolean = true;
 
     projectsContainer: HTMLElement;
-    singleProjects: any;
+    singleProjects: any = projectData;
     singleProject: any;
-    currentSingleProjectIndex: number;
+    currentSingleProjectIndex: any;
     currentState = 'initial';
-
-    // to go into service
-    images = [
-        'assets/el_pastor.png',
-        'https://via.placeholder.com/460',
-        'https://via.placeholder.com/460',
-        'https://via.placeholder.com/460',
-    ];
 
     controller = new ScrollMagic.Controller();
     width: number;
     height: number;
     elementChildren: Array<any>;
 
-    constructor(
-        private renderer: Renderer2,
-        private el: ElementRef,
-        private ngZone: NgZone,
-        // private CanvasBlob: CanvasBlob,
-        private projectsData: ProjectsDataService
-    ) {
+    constructor(private el: ElementRef, private ngZone: NgZone) {
         super();
-        this.singleProjects = this.projectsData.singleProjects;
     }
 
     ngOnInit() {}
@@ -125,15 +111,15 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
         }
     }
 
-    ngAfterViewInit() {
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+    // wait for image to load before getting height and width
+    onImageLoad(evt) {
+        if (evt && evt.target) {
+            this.width = window.innerWidth;
+            this.height = window.innerHeight;
 
-        setTimeout(() => {
-            this.elementChildren = this.projects.last.nativeElement.children;
+            this.elementChildren = this.projects.first.nativeElement.children;
 
             this.projectsContainer = this.projects.last.nativeElement;
-            console.log(this.elementChildren[3].getBoundingClientRect());
 
             let tweens = {
                 headerColorFadeOut: TweenMax.to('body, .app-content, header, .projects', 300, {
@@ -185,7 +171,11 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
                     new TimelineMax().fromTo(
                         '.two',
                         1000,
-                        { x: 0 - this.width - this.elementChildren[3].clientWidth, y: 0, scale: 2 },
+                        {
+                            x: 0 - this.width - this.elementChildren[3].clientWidth,
+                            y: 0,
+                            scale: 2,
+                        },
                         {
                             scale: 1,
 
@@ -344,23 +334,27 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
                 .addIndicators()
                 .setTween(timelineTwo)
                 .addTo(this.controller); // assign the scene to the controller
-        }, 100);
 
-        let blobOne = new CanvasBlob();
+            //}, 100);
 
-        this.ngZone.runOutsideAngular(() =>
-            blobOne.createBlob(
-                this.canvas.nativeElement,
-                '#f56f4f',
-                'blob-one',
-                136,
-                180,
-                190,
-                10,
-                10
-            )
-        );
+            let blobOne = new CanvasBlob();
+
+            this.ngZone.runOutsideAngular(() =>
+                blobOne.createBlob(
+                    this.canvas.nativeElement,
+                    '#f56f4f',
+                    'blob-one',
+                    136,
+                    180,
+                    190,
+                    10,
+                    10
+                )
+            );
+        }
     }
+
+    ngAfterViewInit() {}
 
     projectHover() {
         this.isOverflown(this.overlayTitle);
@@ -370,30 +364,47 @@ export class ProjectsComponent extends CanvasBlob implements AfterViewInit {
 
     // listen to event from single project to close it or decide what data it should hold
     toggleChildComponent(index) {
-        console.log(index);
         this.delete = !this.delete;
+        console.log(this.singleProjects);
+
+        for (var key in this.singleProjects) {
+            if (key == index) {
+                console.log(key);
+                //Sreturn this.singleProjects[key];
+            }
+        }
 
         this.singleProject = this.singleProjects[index];
         this.currentSingleProjectIndex = index;
     }
 
+    // when user clicks next or prev on single projects component -- work out what project to show
     nextChildComponent(event): void {
-        if (event) {
-            if (this.currentSingleProjectIndex === this.singleProjects.length - 1) {
-                this.currentSingleProjectIndex = 0;
-                this.singleProject = this.singleProjects[this.currentSingleProjectIndex];
+        // turn object into useable array
+        const entries: any = Object.entries(this.singleProjects);
+
+        // next and prev projects
+        let sp = this.singleProjects[this.currentSingleProjectIndex]['index'] + 1;
+        let negSP = this.singleProjects[this.currentSingleProjectIndex]['index'] - 1;
+
+        // loop though object finde useful info and conditionally extract
+        for (const value of entries) {
+            if (event) {
+                if (value[1].index === sp) {
+                    this.currentSingleProjectIndex = value[0];
+                    this.singleProject = value[1];
+                } else if (sp >= 3) {
+                    this.currentSingleProjectIndex = 'saffron';
+                    this.singleProject = this.singleProjects['saffron'];
+                }
             } else {
-                this.currentSingleProjectIndex += 1;
-                this.singleProject = this.singleProjects[this.currentSingleProjectIndex];
-                console.log(this.singleProject);
-            }
-        } else {
-            if (this.currentSingleProjectIndex === 0) {
-                this.currentSingleProjectIndex = this.singleProjects.length - 1;
-                this.singleProject = this.singleProjects[this.currentSingleProjectIndex];
-            } else {
-                this.currentSingleProjectIndex -= 1;
-                this.singleProject = this.singleProjects[this.currentSingleProjectIndex];
+                if (value[1].index === negSP) {
+                    this.currentSingleProjectIndex = value[0];
+                    this.singleProject = value[1];
+                } else if (negSP <= 0) {
+                    this.currentSingleProjectIndex = 'saffron';
+                    this.singleProject = this.singleProjects['saffron'];
+                }
             }
         }
     }
