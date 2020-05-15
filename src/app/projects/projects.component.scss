@@ -149,6 +149,10 @@
                 flex-direction: column;
                 background-color: $green;
 
+                @media screen and (max-width: $tablet) {
+                    display: none;
+                }
+
                 p {
                     visibility: hidden;
                     opacity: 0;
@@ -171,7 +175,7 @@
                     }
 
                     &:first-of-type {
-                        font-size: 80px;
+                        font-size: 82px;
                         font-weight: 600;
                         font-stretch: normal;
                         font-style: normal;

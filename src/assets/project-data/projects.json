@@ -4,7 +4,7 @@
         "text": {
             "title": "Saffron Brand Barometer",
             "subTitle": "Wordpress • PHP • javascript • CSS • website",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "text": "Single page marketing website. Makes use of a variety of animations to showcase work. Built using Javascript , PHP, Wordpress. CSS was preprocessed using SASS and GULP. utilises Javascript libraries and uses wordpress to allow client to modify content "
         },
         "image": {
             "src": "assets/saffron.png",
@@ -18,7 +18,7 @@
         "text": {
             "title": "El Pastor",
             "subTitle": "javascript • CSS • website",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "text": "Website for restaurant makes use of Spotify API, Instagram API and Google maps API. Build using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the API calls."
         },
         "image": {
             "src": "assets/el_pastor.png",
@@ -32,7 +32,7 @@
         "text": {
             "title": "Creative Family",
             "subTitle": "Wordpress • PHP • javascript • CSS",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "text": "Website to Showcase agencies work and skills, it focuses on design and simplicity. It needed to be fully responsive and have low load times.Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the animations."
         },
         "image": {
             "src": "assets/creative_family.png",
@@ -45,8 +45,8 @@
         "index": 3,
         "text": {
             "title": "One Soho Place",
-            "subTitle": "javascript • PHP • CSS • website",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "subTitle": "javascript • CSS • website",
+            "text": "Landing page to provide users with the product and  contact information I focused on using HTML5 for semantics. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
         },
         "image": {
             "src": "assets/one_oxford_st.png",
