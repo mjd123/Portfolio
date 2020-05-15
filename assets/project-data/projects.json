@@ -46,7 +46,7 @@
         "text": {
             "title": "One Soho Place",
             "subTitle": "javascript • CSS • website",
-            "text": "As a landing page its purpose is to provide the user with the product and  contact information regarding the product. With a focus on being functional, accessible and usable. I focused on using HTML5 for semantics. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
+            "text": "Landing page to provide users with the product and  contact information I focused on using HTML5 for semantics. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
         },
         "image": {
             "src": "assets/one_oxford_st.png",
