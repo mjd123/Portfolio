@@ -23,7 +23,7 @@ export class SingleProjectComponent implements OnInit {
     singleProjectContainer: ElementRef;
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(private renderer: Renderer2, private el: ElementRef) {}
+    constructor(private renderer: Renderer2) {}
 
     ngOnInit() {
         console.log(this.projectsData);
@@ -53,12 +53,12 @@ export class SingleProjectComponent implements OnInit {
     nextProject() {
         this.changeProject.emit(true);
         // change video with project info
-        this.el.nativeElement.children[0].children[0].children[0].load();
+        this.singleProjectContainer.nativeElement.children[0].children[1].load();
     }
 
     prevousProject() {
         this.changeProject.emit(false);
         // change video with project info
-        this.el.nativeElement.children[0].children[0].children[0].load();
+        this.singleProjectContainer.nativeElement.children[0].children[1].load();
     }
 }

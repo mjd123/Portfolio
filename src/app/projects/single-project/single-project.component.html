@@ -1,7 +1,7 @@
 <section class="single-project-container" #singleProjectContainer>
     <div class="image-container">
         <a class="close-mobile" (click)="close()">[ close ]</a>
-        <video autoplay loop muted playsinline preload="metadata">
+        <video autoplay loop muted playsinline>
             <source src="{{ projectsData?.image.video }}" type="video/mp4" />
         </video>
     </div>
@@ -15,7 +15,7 @@
                 <a (click)="nextProject()"></a>
             </nav>
             <p class="text">{{ projectsData?.text.text }}</p>
-            <a class="link">Visit site</a>
+            <a class="link" href="{{ projectsData?.image.url }}" target="_blank">Visit site</a>
         </div>
 
         <nav class="project-nav">

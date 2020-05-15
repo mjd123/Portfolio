@@ -104,15 +104,26 @@ export class ProjectsComponent extends CanvasBlob {
         if (this.width < 850 && this.height < 500) {
             return 0;
         }
+        if (this.height < 650 && this.width > 900) {
+            console.log('less then 650');
+            return elementHeight + margin + top + 60;
+        }
+
         if (this.width > 900) {
-            return elementHeight + margin + top;
+            console.log('this.width > 900');
+
+            return elementHeight + margin + top + 30;
         } else {
+            console.log('in else');
+
             return this.height / 2 - row;
         }
     }
 
     // wait for image to load before getting height and width
     onImageLoad(evt) {
+        console.log(evt, evt.target.complete);
+
         if (evt && evt.target) {
             this.width = window.innerWidth;
             this.height = window.innerHeight;
@@ -387,7 +398,7 @@ export class ProjectsComponent extends CanvasBlob {
         let sp = this.singleProjects[this.currentSingleProjectIndex]['index'] + 1;
         let negSP = this.singleProjects[this.currentSingleProjectIndex]['index'] - 1;
 
-        // loop though object finde useful info and conditionally extract
+        // loop though object find useful info and conditionally extract
         for (const value of entries) {
             if (event) {
                 if (value[1].index === sp) {
@@ -408,7 +419,7 @@ export class ProjectsComponent extends CanvasBlob {
             }
         }
     }
-
+    // if overlay text overflows element, change color of part of text that s overflown
     isOverflown(element) {
         let parentWidth = element.target.clientWidth;
         let elementWidth = element.target.firstElementChild.clientWidth;
