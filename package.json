@@ -8,7 +8,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "postinstall": "ng build --aot --prod"
+        "heroku-postbuild": "ng build --aot --configuration=production"
     },
     "browserslist": [
         "> 1%",
@@ -35,8 +35,6 @@
         "rxjs": "^6.4.0",
         "scrollmagic": "^2.0.7",
         "scrollmagic-plugin-gsap": "^1.0.4",
-        "snapsvg": "^0.5.1",
-        "snapsvg-cjs": "0.0.6",
         "tslib": "^1.10.0",
         "zone.js": "~0.9.1"
     },
