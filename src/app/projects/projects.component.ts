@@ -29,26 +29,6 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
     selector: 'app-projects',
     templateUrl: './projects.component.html',
     styleUrls: ['./projects.component.scss'],
-    //     animations: [
-    //         trigger('changeDivSize', [
-    //             state(
-    //                 'false',
-    //                 style({
-    //                     backgroundColor: 'green',
-    //                     width: '100%',
-    //                     height: '100%',
-    //                 })
-    //             ),
-    //             state(
-    //                 'true',
-    //                 style({
-    //                     backgroundColor: 'red',
-    //                 })
-    //             ),
-    //             transition('false=>true', animate('1500ms')),
-    //             transition('true=>false', animate('1000ms')),
-    //         ]),
-    //     ],
 })
 export class ProjectsComponent extends CanvasBlob {
     @ViewChild('projectsText', { static: true }) projectsText: ElementRef;
@@ -122,8 +102,6 @@ export class ProjectsComponent extends CanvasBlob {
 
                 this.width = window.innerWidth;
                 this.height = window.innerHeight;
-
-                console.log(this.width, this.height, 'width,height');
 
                 this.elementChildren = this.projects.first.nativeElement.children;
 
@@ -382,32 +360,60 @@ export class ProjectsComponent extends CanvasBlob {
     // listen to event from single project to close it or decide what data it should hold
     toggleChildComponent(index) {
         let tl = new TimelineMax();
-        tl.add([
-            TweenMax.to('.one .overlay', 0, {
-                visibility: 'visible',
-                opacity: 1,
-            }),
-            TweenMax.to('.one p', 0, {
-                display: 'none',
-            }),
-            TweenMax.to('.one ', 0.8, {
-                x: 0,
-                y: 0,
-                width: '100vw',
-                height: '100%',
-                left: 0,
-                top: 0,
-                position: 'inherit',
-                zIndex: 2,
-                onComplete: () => {
-                    //console.log(this, this.singleProjects, index);
-                    this.delete = !this.delete;
+        console.log(this.delete);
+        if (this.delete) {
+            tl.add([
+                TweenMax.to('.one .overlay', 0, {
+                    visibility: 'visible',
+                    opacity: 1,
+                }),
+                TweenMax.to('.one p', 0, {
+                    display: 'none',
+                }),
+                TweenMax.to('.one ', 0.8, {
+                    x: 0,
+                    y: 0,
+                    width: '100vw',
+                    height: '100%',
+                    left: 0,
+                    top: 0,
+                    position: 'inherit',
+                    zIndex: 2,
+                    onComplete: () => {
+                        //console.log(this, this.singleProjects, index);
+                        this.delete = !this.delete;
 
-                    this.singleProject = this.singleProjects[index];
-                    this.currentSingleProjectIndex = index;
-                },
-            }),
-        ]);
+                        this.singleProject = this.singleProjects[index];
+                        this.currentSingleProjectIndex = index;
+                    },
+                }),
+            ]);
+        } else {
+            tl.add([
+                TweenMax.to('.one .overlay', 0, {
+                    visibility: 'hidden',
+                    opacity: 0,
+                }),
+                TweenMax.to('.one p', 0, {
+                    display: 'initial',
+                }),
+                TweenMax.to('.one ', 0.8, {
+                    width: '',
+                    height: '',
+                    left: '',
+                    top: '',
+                    position: '',
+                    zIndex: 2,
+                    onComplete: () => {
+                        //console.log(this, this.singleProjects, index);
+                        this.delete = !this.delete;
+
+                        this.singleProject = this.singleProjects[index];
+                        this.currentSingleProjectIndex = index;
+                    },
+                }),
+            ]);
+        }
     }
 
     // todo move to service

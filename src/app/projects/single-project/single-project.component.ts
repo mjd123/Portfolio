@@ -17,7 +17,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     styleUrls: ['./single-project.component.scss'],
     animations: [
         trigger('fade', [
-            transition('void => *', [style({ opacity: 0 }), animate(1000, style({ opacity: 1 }))]),
+            state('in', style({ opacity: 1 })),
+            state('out', style({ opacity: 0, backgroundColor: 'black' })),
+            transition('in => out', animate(1000)),
         ]),
     ],
 })
@@ -28,17 +30,11 @@ export class SingleProjectComponent implements OnInit {
     @ViewChild('singleProjectContainer', { static: true })
     singleProjectContainer: ElementRef;
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
+    fade: string = 'in';
 
     constructor(private renderer: Renderer2) {}
 
     ngOnInit() {
-        console.log(this.delete);
-        console.log(
-            this.delete.subscribe((x) => {
-                return x;
-            })
-        );
-
         // stop user being able to scroll
         this.renderer.addClass(document.body, 'no-scroll');
         this.renderer.addClass(this.singleProjectContainer.nativeElement, 'no-scroll');
@@ -58,6 +54,7 @@ export class SingleProjectComponent implements OnInit {
 
     close() {
         // pass close event back to parent component
+        this.fade = 'out';
         this.delete.emit(true);
     }
 
