@@ -10,7 +10,7 @@
             "src": "assets/saffron.png",
             "alt": "picture of project",
             "url": "https://cbb19.saffron-consultants.com/",
-            "video": "assets/saffron.mp4"
+            "video": "assets/videos/saffron.mp4"
         }
     },
     "elPastor": {
@@ -24,7 +24,7 @@
             "src": "assets/el_pastor.png",
             "alt": "picture of project",
             "url": "https://www.tacoselpastor.co.uk/",
-            "video": "assets/elpastor.mp4"
+            "video": "assets/videos/elpastor.mp4"
         }
     },
     "creativeFamily": {
@@ -38,7 +38,7 @@
             "src": "assets/creative_family.png",
             "alt": "picture of project",
             "url": "https://www.creativefamily.com/",
-            "video": "assets/creativefamily.mp4"
+            "video": "assets/videos/creativefamily.mp4"
         }
     },
     "oneSohoPlace": {
@@ -52,7 +52,7 @@
             "src": "assets/one_oxford_st.png",
             "alt": "picture of project",
             "url": "https://1sohoplace.london/",
-            "video": "assets/sohoplace.mp4"
+            "video": "assets/videos/sohoplace.mp4"
         }
     }
 }
