@@ -1,6 +1,5 @@
+import { TweenLite } from 'gsap';
 import projectData from '../../assets/project-data/projects.json';
-
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import {
     Component,
@@ -382,18 +381,33 @@ export class ProjectsComponent extends CanvasBlob {
 
     // listen to event from single project to close it or decide what data it should hold
     toggleChildComponent(index) {
-        this.delete = !this.delete;
-        console.log(this.singleProjects);
+        let tl = new TimelineMax();
+        tl.add([
+            TweenMax.to('.one .overlay', 0, {
+                visibility: 'visible',
+                opacity: 1,
+            }),
+            TweenMax.to('.one p', 0, {
+                display: 'none',
+            }),
+            TweenMax.to('.one ', 0.8, {
+                x: 0,
+                y: 0,
+                width: '100vw',
+                height: '100%',
+                left: 0,
+                top: 0,
+                position: 'inherit',
+                zIndex: 2,
+                onComplete: () => {
+                    //console.log(this, this.singleProjects, index);
+                    this.delete = !this.delete;
 
-        for (var key in this.singleProjects) {
-            if (key == index) {
-                console.log(key);
-                //Sreturn this.singleProjects[key];
-            }
-        }
-
-        this.singleProject = this.singleProjects[index];
-        this.currentSingleProjectIndex = index;
+                    this.singleProject = this.singleProjects[index];
+                    this.currentSingleProjectIndex = index;
+                },
+            }),
+        ]);
     }
 
     // todo move to service

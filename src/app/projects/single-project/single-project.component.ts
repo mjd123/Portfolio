@@ -9,11 +9,17 @@ import {
     ElementRef,
     Renderer2,
 } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
     selector: 'app-single-project',
     templateUrl: './single-project.component.html',
     styleUrls: ['./single-project.component.scss'],
+    animations: [
+        trigger('fade', [
+            transition('void => *', [style({ opacity: 0 }), animate(1000, style({ opacity: 1 }))]),
+        ]),
+    ],
 })
 export class SingleProjectComponent implements OnInit {
     @Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -26,7 +32,12 @@ export class SingleProjectComponent implements OnInit {
     constructor(private renderer: Renderer2) {}
 
     ngOnInit() {
-        console.log(this.projectsData);
+        console.log(this.delete);
+        console.log(
+            this.delete.subscribe((x) => {
+                return x;
+            })
+        );
 
         // stop user being able to scroll
         this.renderer.addClass(document.body, 'no-scroll');
