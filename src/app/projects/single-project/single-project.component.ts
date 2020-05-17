@@ -26,8 +26,6 @@ export class SingleProjectComponent implements OnInit {
     constructor(private renderer: Renderer2) {}
 
     ngOnInit() {
-        console.log(this.projectsData);
-
         // stop user being able to scroll
         this.renderer.addClass(document.body, 'no-scroll');
         this.renderer.addClass(this.singleProjectContainer.nativeElement, 'no-scroll');
