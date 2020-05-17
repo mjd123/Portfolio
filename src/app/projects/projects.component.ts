@@ -20,8 +20,8 @@ import {
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
 import { TweenMax, TimelineMax } from 'gsap';
-import ScrollMagic from 'ScrollMagic';
-import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
+import ScrollMagic from 'scrollmagic';
+//import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
