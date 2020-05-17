@@ -119,12 +119,8 @@ export class ProjectsComponent extends CanvasBlob {
     onImageLoad(evt) {
         if (evt && evt.target) {
             setTimeout(() => {
-                console.log('igot event image onload', evt, evt.target);
-
                 this.width = window.innerWidth;
                 this.height = window.innerHeight;
-
-                console.log(this.width, this.height, 'width,height');
 
                 this.elementChildren = this.projects.first.nativeElement.children;
 
@@ -383,14 +379,6 @@ export class ProjectsComponent extends CanvasBlob {
     // listen to event from single project to close it or decide what data it should hold
     toggleChildComponent(index) {
         this.delete = !this.delete;
-        console.log(this.singleProjects);
-
-        for (var key in this.singleProjects) {
-            if (key == index) {
-                console.log(key);
-                //Sreturn this.singleProjects[key];
-            }
-        }
 
         this.singleProject = this.singleProjects[index];
         this.currentSingleProjectIndex = index;

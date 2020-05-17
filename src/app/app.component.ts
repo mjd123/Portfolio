@@ -23,8 +23,6 @@ export class AppComponent {
                 })
             )
             .subscribe((evt) => {
-                console.log('event: ', evt, this.windowwWidth);
-
                 if (this.windowwWidth !== evt) {
                     location.reload();
                 }
