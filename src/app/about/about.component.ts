@@ -1,13 +1,5 @@
 import { CanvasBlob } from '../animations/blob-canvas-animation';
-import {
-    Component,
-    OnInit,
-    NgZone,
-    ElementRef,
-    ViewChild,
-    ViewChildren,
-    QueryList,
-} from '@angular/core';
+import { Component, OnInit, NgZone, ViewChildren, QueryList } from '@angular/core';
 
 @Component({
     selector: 'app-about',

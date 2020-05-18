@@ -1,21 +1,13 @@
-import { style } from '@angular/animations';
-import { TweenLite } from 'gsap';
 import projectData from '../../assets/project-data/projects.json';
 
 import {
     Component,
-    OnInit,
-    OnDestroy,
-    AfterViewInit,
-    HostListener,
     ElementRef,
     ViewChild,
     ViewChildren,
     QueryList,
     Input,
-    Renderer2,
     NgZone,
-    ChangeDetectorRef,
 } from '@angular/core';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
@@ -59,7 +51,6 @@ export class ProjectsComponent extends CanvasBlob {
         //landscape phones
         if (this.width < 850 && this.height < 500) {
             return this.width / 2 + landscapePos;
-            return 0 + landscapePos; //this.width / 2 - elementWidth;
         }
 
         if (sideOfScreen === 'right') {
@@ -357,12 +348,11 @@ export class ProjectsComponent extends CanvasBlob {
     ngOnDestroy() {}
     selectedEl;
     // listen to event from single project to close it or decide what data it should hold
-    toggleChildComponent(event, index?) {
+    toggleChildComponent(event, index) {
         let tl = new TimelineMax();
 
         // if delete is true single projects is closed, the single projects then need to fade in
         if (this.delete) {
-            // the clicked project
             this.selectedEl = event.currentTarget;
 
             this.singleProject = this.singleProjects[index];
@@ -384,11 +374,12 @@ export class ProjectsComponent extends CanvasBlob {
                     },
                     callbackScope: this,
                 }),
+            ]);
+            if (this.width > 900) {
                 TweenMax.to(this.selectedEl, 0, {
                     zIndex: 2,
-                }),
-            ]);
-            // if single project is open fade out
+                });
+            }
         } else {
             this.delete = !this.delete;
 
@@ -406,7 +397,7 @@ export class ProjectsComponent extends CanvasBlob {
                         TweenMax.set(this.selectedEl, {
                             clearProps: 'zIndex',
                         });
-                    }, 500);
+                    }, 400);
                 },
                 callbackScope: this,
             });
