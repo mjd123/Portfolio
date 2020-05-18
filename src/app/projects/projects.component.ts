@@ -357,7 +357,7 @@ export class ProjectsComponent extends CanvasBlob {
     ngOnDestroy() {}
     selectedEl;
     // listen to event from single project to close it or decide what data it should hold
-    toggleChildComponent(event, index) {
+    toggleChildComponent(event, index?) {
         let tl = new TimelineMax();
 
         // if delete is true single projects is closed, the single projects then need to fade in

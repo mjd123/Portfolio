@@ -1,0 +1,58 @@
+{
+    "saffron": {
+        "index": 0,
+        "text": {
+            "title": "Saffron Brand Barometer",
+            "subTitle": "Wordpress • PHP • javascript • CSS • website",
+            "text": "Single page marketing website. Makes use of a variety of animations to showcase work. Built using Javascript , PHP, Wordpress. CSS was preprocessed using SASS and GULP. utilises Javascript libraries and uses wordpress to allow client to modify content "
+        },
+        "image": {
+            "src": "assets/saffron.png",
+            "alt": "picture of project",
+            "url": "https://cbb19.saffron-consultants.com/",
+            "video": "assets/videos/saffron.mp4"
+        }
+    },
+    "elPastor": {
+        "index": 1,
+        "text": {
+            "title": "El Pastor",
+            "subTitle": "javascript • CSS • website",
+            "text": "Website for restaurant makes use of Spotify API, Instagram API and Google maps API. Build using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the API calls."
+        },
+        "image": {
+            "src": "assets/el_pastor.png",
+            "alt": "picture of project",
+            "url": "https://www.tacoselpastor.co.uk/",
+            "video": "assets/videos/elpastor.mp4"
+        }
+    },
+    "creativeFamily": {
+        "index": 2,
+        "text": {
+            "title": "Creative Family",
+            "subTitle": "Wordpress • PHP • javascript • CSS",
+            "text": "Website to Showcase agencies work and skills, it focuses on design and simplicity. It needed to be fully responsive and have low load times.Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the animations."
+        },
+        "image": {
+            "src": "assets/creative_family.png",
+            "alt": "picture of project",
+            "url": "https://www.creativefamily.com/",
+            "video": "assets/videos/creativefamily.mp4"
+        }
+    },
+    "oneSohoPlace": {
+        "index": 3,
+        "text": {
+            "title": "One Soho Place",
+            "subTitle": "javascript • CSS • website",
+            "text": "Landing page to provide users with the product and  contact information I focused on using HTML5 for semantics. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
+        },
+        "image": {
+            "src": "assets/one_oxford_st.png",
+            "alt": "picture of project",
+            "url": "https://1sohoplace.london/",
+            "video": "assets/videos/sohoplace.mp4"
+        }
+    }
+}
