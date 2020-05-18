@@ -10,7 +10,6 @@ import {
     Renderer2,
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { timeout } from 'rxjs/operators';
 
 @Component({
     selector: 'app-single-project',

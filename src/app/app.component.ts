@@ -17,7 +17,6 @@ export class AppComponent {
         this.resizeObservable$ = fromEvent(window, 'resize');
         this.resizeSubscription$ = this.resizeObservable$
             .pipe(
-                //debounceTime(500),
                 map((e) => {
                     return e.target.innerWidth; // <-- target does not exist on {}
                 })

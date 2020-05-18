@@ -149,9 +149,9 @@
                 flex-direction: column;
                 background-color: $green;
 
-                @media screen and (max-width: $tablet) {
-                    display: none;
-                }
+                // @media screen and (max-width: $tablet) {
+                //     display: none;
+                // }
 
                 p {
                     visibility: hidden;
