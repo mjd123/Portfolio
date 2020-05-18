@@ -362,8 +362,8 @@ export class ProjectsComponent extends CanvasBlob {
 
         // if delete is true single projects is closed, the single projects then need to fade in
         if (this.delete) {
+            // the clicked project
             this.selectedEl = event.currentTarget;
-            console.log(this.selectedEl.children);
 
             this.singleProject = this.singleProjects[index];
             this.currentSingleProjectIndex = index;
@@ -388,6 +388,7 @@ export class ProjectsComponent extends CanvasBlob {
                     zIndex: 2,
                 }),
             ]);
+            // if single project is open fade out
         } else {
             this.delete = !this.delete;
 
