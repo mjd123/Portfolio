@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { TweenLite } from 'gsap';
 import projectData from '../../assets/project-data/projects.json';
 
@@ -19,8 +20,8 @@ import {
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
 import { TweenMax, TimelineMax } from 'gsap';
-import ScrollMagic from 'ScrollMagic';
-import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
+import ScrollMagic from 'scrollMagic';
+//import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
@@ -98,8 +99,6 @@ export class ProjectsComponent extends CanvasBlob {
     onImageLoad(evt) {
         if (evt && evt.target) {
             setTimeout(() => {
-                console.log('igot event image onload', evt, evt.target);
-
                 this.width = window.innerWidth;
                 this.height = window.innerHeight;
 
@@ -356,63 +355,60 @@ export class ProjectsComponent extends CanvasBlob {
     }
 
     ngOnDestroy() {}
-
+    selectedEl;
     // listen to event from single project to close it or decide what data it should hold
-    toggleChildComponent(index) {
+    toggleChildComponent(event, index) {
         let tl = new TimelineMax();
-        console.log(this.delete);
+
+        // if delete is true single projects is closed, the single projects then need to fade in
         if (this.delete) {
+            this.selectedEl = event.currentTarget;
+            console.log(this.selectedEl.children);
+
+            this.singleProject = this.singleProjects[index];
+            this.currentSingleProjectIndex = index;
+
             tl.add([
-                TweenMax.to('.one .overlay', 0, {
+                TweenMax.to(this.selectedEl.children[0].children, 0, {
+                    opacity: 0,
+                    visibility: 'hidden',
+                }),
+                TweenMax.to(this.selectedEl.children[0], 0.1, {
                     visibility: 'visible',
                     opacity: 1,
-                }),
-                TweenMax.to('.one p', 0, {
-                    display: 'none',
-                }),
-                TweenMax.to('.one ', 0.8, {
-                    x: 0,
-                    y: 0,
-                    width: '100vw',
-                    height: '100%',
-                    left: 0,
-                    top: 0,
-                    position: 'inherit',
-                    zIndex: 2,
-                    onComplete: () => {
-                        //console.log(this, this.singleProjects, index);
-                        this.delete = !this.delete;
-
-                        this.singleProject = this.singleProjects[index];
-                        this.currentSingleProjectIndex = index;
+                    scale: 10,
+                    onComplete: function () {
+                        setTimeout(() => {
+                            this.delete = !this.delete;
+                        }, 200);
                     },
+                    callbackScope: this,
+                }),
+                TweenMax.to(this.selectedEl, 0, {
+                    zIndex: 2,
                 }),
             ]);
         } else {
-            tl.add([
-                TweenMax.to('.one .overlay', 0, {
-                    visibility: 'hidden',
-                    opacity: 0,
-                }),
-                TweenMax.to('.one p', 0, {
-                    display: 'initial',
-                }),
-                TweenMax.to('.one ', 0.8, {
-                    width: '',
-                    height: '',
-                    left: '',
-                    top: '',
-                    position: '',
-                    zIndex: 2,
-                    onComplete: () => {
-                        //console.log(this, this.singleProjects, index);
-                        this.delete = !this.delete;
+            this.delete = !this.delete;
 
-                        this.singleProject = this.singleProjects[index];
-                        this.currentSingleProjectIndex = index;
-                    },
-                }),
-            ]);
+            TweenMax.to(this.selectedEl.children[0], 0, {
+                scale: 1,
+                visibility: '',
+                onComplete: function () {
+                    TweenMax.set(this.selectedEl.children[0], { clearProps: 'opacity' });
+                    TweenMax.set(this.selectedEl.children[0].children, { clearProps: 'opacity' });
+                    TweenMax.set(this.selectedEl.children[0].children, {
+                        clearProps: 'visibility',
+                    });
+
+                    setTimeout(() => {
+                        TweenMax.set(this.selectedEl, {
+                            clearProps: 'zIndex',
+                        });
+                    }, 500);
+                },
+                callbackScope: this,
+            });
         }
     }
 
