@@ -9,11 +9,21 @@ import {
     ElementRef,
     Renderer2,
 } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { timeout } from 'rxjs/operators';
 
 @Component({
     selector: 'app-single-project',
     templateUrl: './single-project.component.html',
     styleUrls: ['./single-project.component.scss'],
+    animations: [
+        trigger('fade', [
+            state('visible', style({ opacity: 1 })),
+            state('hidden', style({ opacity: 0 })),
+            transition(':enter', [animate(300)]),
+            transition('visible => hidden', [animate(300)]),
+        ]),
+    ],
 })
 export class SingleProjectComponent implements OnInit {
     @Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -22,6 +32,7 @@ export class SingleProjectComponent implements OnInit {
     @ViewChild('singleProjectContainer', { static: true })
     singleProjectContainer: ElementRef;
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
+    fade: string = 'visible';
 
     constructor(private renderer: Renderer2) {}
 
@@ -37,6 +48,9 @@ export class SingleProjectComponent implements OnInit {
 
     ngOnDestroy() {
         // reset all
+
+        console.log('destroy');
+
         this.projectsData = {};
         this.renderer.removeClass(document.body, 'no-scroll');
         this.renderer.removeClass(this.singleProjectContainer.nativeElement, 'no-scroll');
@@ -44,8 +58,11 @@ export class SingleProjectComponent implements OnInit {
     }
 
     close() {
+        this.fade = 'hidden';
         // pass close event back to parent component
-        this.delete.emit(true);
+        setTimeout(() => {
+            this.delete.emit(true);
+        }, 200);
     }
 
     nextProject() {
