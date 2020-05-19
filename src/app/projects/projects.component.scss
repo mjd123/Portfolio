@@ -127,10 +127,18 @@
                 .overlay {
                     visibility: visible;
                     opacity: 1;
+                    @media screen and (max-width: $tablet) {
+                        visibility: hidden;
+                        opacity: 0;
+                    }
                     //transition: all 0.5s ease;
                     p {
                         visibility: visible;
                         opacity: 1;
+                        @media screen and (max-width: $tablet) {
+                            visibility: hidden;
+                            opacity: 0;
+                        }
                         //transition: all 0.5s ease;
                     }
                 }
@@ -149,9 +157,9 @@
                 flex-direction: column;
                 background-color: $green;
 
-                @media screen and (max-width: $tablet) {
-                    opacity: 0;
-                }
+                // @media screen and (max-width: $tablet) {
+                //     opacity: 0;
+                // }
 
                 p {
                     visibility: hidden;
@@ -171,7 +179,7 @@
                     }
 
                     @media screen and (max-width: $mobile) {
-                        font-size: 14px;
+                        font-size: 12px;
                     }
 
                     &:first-of-type {
@@ -193,7 +201,7 @@
                         }
 
                         @media screen and (max-width: $mobile) {
-                            font-size: 38px;
+                            font-size: 30px;
                         }
                     }
                 }
@@ -333,10 +341,34 @@
                     .title {
                         font-size: 76px;
                         margin-bottom: 0;
+
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                            font-size: 60px;
+                        }
+
+                        @media screen and (max-width: $tablet) {
+                            font-size: 60px;
+                        }
+
+                        @media screen and (max-width: $mobile) {
+                            font-size: 30px;
+                        }
                     }
 
                     .sub-title {
                         font-size: 14px;
+
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+                            font-size: 14px;
+                        }
+
+                        @media screen and (max-width: $tablet) {
+                            font-size: 14px;
+                        }
+
+                        @media screen and (max-width: $mobile) {
+                            font-size: 12px;
+                        }
                     }
                 }
 

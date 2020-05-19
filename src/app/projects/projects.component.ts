@@ -353,11 +353,17 @@ export class ProjectsComponent extends CanvasBlob {
 
         // if delete is true single projects is closed, the single projects then need to fade in
         if (this.delete) {
-            // .overlay
+            // .project-container
             this.selectedEl = event.currentTarget;
 
             this.singleProject = this.singleProjects[index];
             this.currentSingleProjectIndex = index;
+
+            //if (this.width > 850) {
+            TweenMax.to(this.selectedEl, 0, {
+                zIndex: 2,
+            });
+            // }
 
             tl.add([
                 TweenMax.to(this.selectedEl.children[0].children, 0, {
@@ -376,19 +382,14 @@ export class ProjectsComponent extends CanvasBlob {
                     callbackScope: this,
                 }),
             ]);
-            if (this.width > 850) {
-                TweenMax.to(this.selectedEl, 0, {
-                    zIndex: 2,
-                });
-            }
         } else {
             this.delete = !this.delete;
 
             TweenMax.to(this.selectedEl.children[0], 0, {
                 scale: 1,
-                visibility: '',
                 onComplete: function () {
                     TweenMax.set(this.selectedEl.children[0], { clearProps: 'opacity' });
+                    TweenMax.set(this.selectedEl.children[0], { clearProps: 'visibility' });
                     TweenMax.set(this.selectedEl.children[0].children, { clearProps: 'opacity' });
                     TweenMax.set(this.selectedEl.children[0].children, {
                         clearProps: 'visibility',
