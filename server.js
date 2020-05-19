@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const wakeUpDyno = require('wokeDyno.js');
 const app = express();
 
 // Serve static files....
@@ -11,4 +12,6 @@ app.get('/*', function (req, res) {
 });
 
 // default Heroku PORT
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+    wakeUpDyno(DYNO_URL);
+});
