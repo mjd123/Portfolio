@@ -386,7 +386,7 @@ export class ProjectsComponent extends CanvasBlob {
 
     // todo move to service
     // when user clicks next or prev on single projects component -- work out what project to show
-    nextChildComponent(event): void {
+    nextChildComponent(event, index?): void {
         // turn object into useable array
         const entries: any = Object.entries(this.singleProjects);
 
