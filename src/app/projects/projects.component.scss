@@ -149,9 +149,9 @@
                 flex-direction: column;
                 background-color: $green;
 
-                // @media screen and (max-width: $tablet) {
-                //     display: none;
-                // }
+                @media screen and (max-width: $tablet) {
+                    opacity: 0;
+                }
 
                 p {
                     visibility: hidden;
@@ -328,6 +328,17 @@
             &.four {
                 //ratio 1.895
                 width: 359px;
+
+                .overlay {
+                    .title {
+                        font-size: 76px;
+                        margin-bottom: 0;
+                    }
+
+                    .sub-title {
+                        font-size: 14px;
+                    }
+                }
 
                 img {
                     width: 100%;
