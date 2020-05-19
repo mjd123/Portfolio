@@ -42,6 +42,7 @@
         "scrollmagic-plugin-gsap": "^1.0.4",
         "tslib": "^1.10.0",
         "typescript": "~3.5.3",
+        "woke-dyno": "0.0.4",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
