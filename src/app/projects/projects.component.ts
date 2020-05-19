@@ -353,6 +353,7 @@ export class ProjectsComponent extends CanvasBlob {
 
         // if delete is true single projects is closed, the single projects then need to fade in
         if (this.delete) {
+            // .overlay
             this.selectedEl = event.currentTarget;
 
             this.singleProject = this.singleProjects[index];
@@ -375,7 +376,7 @@ export class ProjectsComponent extends CanvasBlob {
                     callbackScope: this,
                 }),
             ]);
-            if (this.width > 900) {
+            if (this.width > 850) {
                 TweenMax.to(this.selectedEl, 0, {
                     zIndex: 2,
                 });
