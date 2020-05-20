@@ -32,7 +32,7 @@
         "text": {
             "title": "Creative Family",
             "subTitle": "Wordpress • PHP • javascript • CSS",
-            "text": "Website to Showcase agencies work and skills. It needed to be fully responsive and have low load times.Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the animations."
+            "text": "Website to Showcase agencies work and skills. It needed to be fully responsive and have low load times. Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the animations."
         },
         "image": {
             "src": "assets/creative_family.png",
