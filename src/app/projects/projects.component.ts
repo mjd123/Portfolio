@@ -374,6 +374,7 @@ export class ProjectsComponent extends CanvasBlob {
                     visibility: 'visible',
                     opacity: 1,
                     scale: 10,
+                    height: '100vh',
                     onComplete: function () {
                         setTimeout(() => {
                             this.delete = !this.delete;
@@ -388,6 +389,7 @@ export class ProjectsComponent extends CanvasBlob {
             TweenMax.to(this.selectedEl.children[0], 0, {
                 scale: 1,
                 onComplete: function () {
+                    TweenMax.set(this.selectedEl.children[0], { clearProps: 'height' });
                     TweenMax.set(this.selectedEl.children[0], { clearProps: 'opacity' });
                     TweenMax.set(this.selectedEl.children[0], { clearProps: 'visibility' });
                     TweenMax.set(this.selectedEl.children[0].children, { clearProps: 'opacity' });
