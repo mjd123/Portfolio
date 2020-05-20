@@ -9,16 +9,6 @@ import {
     Input,
     NgZone,
 } from '@angular/core';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    animateChild,
-    group,
-    query,
-} from '@angular/animations';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
 import { TweenMax, TimelineMax } from 'gsap';
@@ -447,7 +437,7 @@ export class ProjectsComponent extends CanvasBlob {
             }
         }
     }
-    // if overlay text overflows element, change color of part of text that s overflown
+    // if overlay text overflows element, change color of part of text thats overflown
     isOverflown(element) {
         let parentWidth = element.target.clientWidth;
         let elementWidth = element.target.firstElementChild.clientWidth;
