@@ -1,6 +1,18 @@
 @import '../../../scss/colors.scss';
 @import '../../../scss/fonts.scss';
 
+:host::ng-deep {
+    video {
+        opacity: 0;
+        transition: all 1s ease-in-out;
+
+        &.visible {
+            opacity: 1;
+            transition: all 1s ease-in-out;
+        }
+    }
+}
+
 .single-project-container {
     height: 100vh;
     width: 100%;

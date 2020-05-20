@@ -9,7 +9,16 @@ import {
     ElementRef,
     Renderer2,
 } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    animateChild,
+    group,
+    query,
+} from '@angular/animations';
 
 @Component({
     selector: 'app-single-project',
@@ -19,8 +28,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         trigger('fade', [
             state('visible', style({ opacity: 1 })),
             state('hidden', style({ opacity: 0 })),
-            transition(':enter', [animate(300)]),
-            transition('visible => hidden', [animate(300)]),
+            transition(':enter', [animate(600)]),
+            transition('visible <=> hidden', [animate(600)]),
         ]),
     ],
 })
@@ -32,6 +41,7 @@ export class SingleProjectComponent implements OnInit {
     singleProjectContainer: ElementRef;
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
     fade: string = 'visible';
+    fadeVideo: string;
 
     constructor(private renderer: Renderer2) {}
 
@@ -48,8 +58,6 @@ export class SingleProjectComponent implements OnInit {
     ngOnDestroy() {
         // reset all
 
-        console.log('destroy');
-
         this.projectsData = {};
         this.renderer.removeClass(document.body, 'no-scroll');
         this.renderer.removeClass(this.singleProjectContainer.nativeElement, 'no-scroll');
@@ -58,21 +66,39 @@ export class SingleProjectComponent implements OnInit {
 
     close() {
         this.fade = 'hidden';
+
         // pass close event back to parent component
         setTimeout(() => {
             this.delete.emit(true);
-        }, 200);
+        }, 300);
     }
 
     nextProject() {
-        this.changeProject.emit(true);
-        // change video with project info
-        this.singleProjectContainer.nativeElement.children[0].children[1].load();
+        this.fade = 'hidden';
+        this.fadeVideo = 'hidden';
+
+        setTimeout(() => {
+            this.fade = 'visible';
+
+            this.changeProject.emit(true);
+            // change video with project info
+            this.singleProjectContainer.nativeElement.children[0].children[1].load();
+        }, 700);
     }
 
     prevousProject() {
-        this.changeProject.emit(false);
-        // change video with project info
-        this.singleProjectContainer.nativeElement.children[0].children[1].load();
+        this.fade = 'hidden';
+        this.fadeVideo = 'hidden';
+
+        setTimeout(() => {
+            this.fade = 'visible';
+            this.changeProject.emit(false);
+            // change video with project info
+            this.singleProjectContainer.nativeElement.children[0].children[1].load();
+        }, 700);
+    }
+
+    videoLoad() {
+        this.fadeVideo = 'visible';
     }
 }
