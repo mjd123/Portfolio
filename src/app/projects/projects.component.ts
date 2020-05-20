@@ -9,16 +9,6 @@ import {
     Input,
     NgZone,
 } from '@angular/core';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    animateChild,
-    group,
-    query,
-} from '@angular/animations';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
 import { TweenMax, TimelineMax } from 'gsap';
