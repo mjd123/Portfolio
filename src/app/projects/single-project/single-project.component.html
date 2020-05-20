@@ -1,7 +1,15 @@
-<section class="single-project-container" #singleProjectContainer>
+<section class="single-project-container" [@fade]="fade" #singleProjectContainer>
     <div class="image-container">
         <a class="close-mobile" (click)="close()">[ close ]</a>
-        <video autoplay loop muted playsinline>
+        <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload
+            [ngClass]="{ visible: fadeVideo === 'visible' }"
+            (loadeddata)="videoLoad()"
+        >
             <source src="{{ projectsData?.image.video }}" type="video/mp4" />
         </video>
     </div>

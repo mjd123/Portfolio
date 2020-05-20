@@ -1,26 +1,28 @@
 import projectData from '../../assets/project-data/projects.json';
 
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
 import {
     Component,
-    OnInit,
-    OnDestroy,
-    AfterViewInit,
-    HostListener,
     ElementRef,
     ViewChild,
     ViewChildren,
     QueryList,
     Input,
-    Renderer2,
     NgZone,
-    ChangeDetectorRef,
 } from '@angular/core';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    animateChild,
+    group,
+    query,
+} from '@angular/animations';
 
 import { CanvasBlob } from '../animations/blob-canvas-animation';
 import { TweenMax, TimelineMax } from 'gsap';
-import ScrollMagic from 'scrollmagic';
+import ScrollMagic from 'scrollMagic';
 //import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators';
 import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 
@@ -30,26 +32,6 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
     selector: 'app-projects',
     templateUrl: './projects.component.html',
     styleUrls: ['./projects.component.scss'],
-    //     animations: [
-    //         trigger('changeDivSize', [
-    //             state(
-    //                 'false',
-    //                 style({
-    //                     backgroundColor: 'green',
-    //                     width: '100%',
-    //                     height: '100%',
-    //                 })
-    //             ),
-    //             state(
-    //                 'true',
-    //                 style({
-    //                     backgroundColor: 'red',
-    //                 })
-    //             ),
-    //             transition('false=>true', animate('1500ms')),
-    //             transition('true=>false', animate('1000ms')),
-    //         ]),
-    //     ],
 })
 export class ProjectsComponent extends CanvasBlob {
     @ViewChild('projectsText', { static: true }) projectsText: ElementRef;
@@ -79,7 +61,6 @@ export class ProjectsComponent extends CanvasBlob {
         //landscape phones
         if (this.width < 850 && this.height < 500) {
             return this.width / 2 + landscapePos;
-            return 0 + landscapePos; //this.width / 2 - elementWidth;
         }
 
         if (sideOfScreen === 'right') {
@@ -375,13 +356,64 @@ export class ProjectsComponent extends CanvasBlob {
     }
 
     ngOnDestroy() {}
-
+    selectedEl;
     // listen to event from single project to close it or decide what data it should hold
-    toggleChildComponent(index) {
-        this.delete = !this.delete;
+    toggleChildComponent(event, index?) {
+        let tl = new TimelineMax();
 
-        this.singleProject = this.singleProjects[index];
-        this.currentSingleProjectIndex = index;
+        // if delete is true single projects is closed, the single projects then need to fade in
+        if (this.delete) {
+            // .project-container
+            this.selectedEl = event.currentTarget;
+
+            this.singleProject = this.singleProjects[index];
+            this.currentSingleProjectIndex = index;
+
+            //if (this.width > 850) {
+            TweenMax.to(this.selectedEl, 0, {
+                zIndex: 2,
+            });
+            // }
+
+            tl.add([
+                TweenMax.to(this.selectedEl.children[0].children, 0, {
+                    opacity: 0,
+                    visibility: 'hidden',
+                }),
+                TweenMax.to(this.selectedEl.children[0], 0.1, {
+                    visibility: 'visible',
+                    opacity: 1,
+                    scale: 10,
+                    onComplete: function () {
+                        setTimeout(() => {
+                            this.delete = !this.delete;
+                        }, 200);
+                    },
+                    callbackScope: this,
+                }),
+            ]);
+        } else {
+            this.delete = !this.delete;
+
+            TweenMax.to(this.selectedEl.children[0], 0, {
+                scale: 1,
+                onComplete: function () {
+                    TweenMax.set(this.selectedEl.children[0], { clearProps: 'opacity' });
+                    TweenMax.set(this.selectedEl.children[0], { clearProps: 'visibility' });
+                    TweenMax.set(this.selectedEl.children[0].children, { clearProps: 'opacity' });
+                    TweenMax.set(this.selectedEl.children[0].children, {
+                        clearProps: 'visibility',
+                    });
+
+                    setTimeout(() => {
+                        TweenMax.set(this.selectedEl, {
+                            clearProps: 'zIndex',
+                        });
+                    }, 400);
+                },
+                callbackScope: this,
+            });
+        }
     }
 
     // todo move to service
