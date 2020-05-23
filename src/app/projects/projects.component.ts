@@ -1,4 +1,3 @@
-import { tweens } from './../animations/tweens';
 import projectData from '../../assets/project-data/projects.json';
 
 import {
@@ -20,7 +19,7 @@ import { ScrollMagicPluginGsap } from 'scrollmagic-plugin-gsap';
 ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
 import { Observable, of, from, fromEvent, Subscription, Subject, timer, observable } from 'rxjs';
-import { take, finalize, takeUntil, last, timeout, debounceTime, delay } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 
 @Component({
     selector: 'app-projects',
