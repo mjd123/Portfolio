@@ -1,6 +1,6 @@
 <section class="single-project-container" [@fade]="fade" #singleProjectContainer>
     <div class="image-container">
-        <a class="close-mobile" (click)="close()">[ close ]</a>
+        <a class="close-mobile">[ close ]</a>
         <video
             autoplay
             loop
@@ -14,7 +14,7 @@
         </video>
     </div>
     <div class="text-container">
-        <a class="close" (click)="close()">[ close ]</a>
+        <a class="close">[ close ]</a>
         <div class="description">
             <p class="title">{{ projectsData?.text.title }}</p>
             <p class="sub-title">{{ projectsData?.text.subTitle }}</p>
@@ -27,8 +27,8 @@
         </div>
 
         <nav class="project-nav">
-            <a (click)="prevousProject()">Prevous project</a>
-            <a (click)="nextProject()">Next project</a>
+            <a>Prevous project</a>
+            <a>Next project</a>
         </nav>
     </div>
 </section>

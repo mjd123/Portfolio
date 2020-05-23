@@ -9,16 +9,9 @@ import {
     ElementRef,
     Renderer2,
 } from '@angular/core';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    animateChild,
-    group,
-    query,
-} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Observable, of, from, fromEvent, Subscription, Subject, timer } from 'rxjs';
+import { take, finalize, takeUntil, last, timeout, debounceTime, delay } from 'rxjs/operators';
 
 @Component({
     selector: 'app-single-project',
@@ -42,6 +35,7 @@ export class SingleProjectComponent implements OnInit {
     @Output() changeProject: EventEmitter<boolean> = new EventEmitter<boolean>();
     fade: string = 'visible';
     fadeVideo: string;
+    private subscription: Subscription = new Subscription();
 
     constructor(private renderer: Renderer2) {}
 
@@ -53,7 +47,18 @@ export class SingleProjectComponent implements OnInit {
         this.renderer.setStyle(document.documentElement, 'overflow-y', 'hidden');
     }
 
-    ngAfterViewInit() {}
+    ngAfterViewInit() {
+        const previousProject = document.querySelector('.project-nav > a:first-child');
+        const nextProject = document.querySelector('.project-nav > a:last-child');
+        const close = document.querySelectorAll('.close,.close-mobile');
+
+        // // subscribe to events
+        this.subscription.add(
+            fromEvent(previousProject, 'click').subscribe(() => this.prevousProject())
+        );
+        this.subscription.add(fromEvent(nextProject, 'click').subscribe(() => this.nextProject()));
+        this.subscription.add(fromEvent(close, 'click').subscribe(() => this.close()));
+    }
 
     ngOnDestroy() {
         // reset all
@@ -62,6 +67,7 @@ export class SingleProjectComponent implements OnInit {
         this.renderer.removeClass(document.body, 'no-scroll');
         this.renderer.removeClass(this.singleProjectContainer.nativeElement, 'no-scroll');
         this.renderer.removeStyle(document.documentElement, 'overflow-y');
+        this.subscription.unsubscribe();
     }
 
     close() {
