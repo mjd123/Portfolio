@@ -4,7 +4,7 @@
         "text": {
             "title": "Saffron Brand Barometer",
             "subTitle": "Wordpress • PHP • javascript • CSS • website",
-            "text": "Single page marketing website. Makes use of a variety of animations to showcase work. Built using Javascript , PHP and Wordpress. CSS was preprocessed using SASS and GULP. Utilises Javascript libraries and uses Wordpress to allow client to modify content "
+            "text": "Single page marketing website. Makes use of a variety of animations to showcase work. Built using Javascript , PHP and Wordpress. CSS was preprocessed using SASS and GULP. Utilises Javascript libraries and uses Wordpress to allow client to modify content."
         },
         "image": {
             "src": "assets/saffron.png",
@@ -18,7 +18,7 @@
         "text": {
             "title": "El Pastor",
             "subTitle": "javascript • CSS • website",
-            "text": "Website for restaurant makes use of Spotify, Instagram and Google maps APIs. Build using Wordpress, PHP and advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. Javascript for the API calls."
+            "text": "Website for restaurant, makes use of Spotify, Instagram and Google maps APIs. Built using Wordpress, PHP and advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. Javascript for the API calls and animations."
         },
         "image": {
             "src": "assets/el_pastor.png",
@@ -32,7 +32,7 @@
         "text": {
             "title": "Creative Family",
             "subTitle": "Wordpress • PHP • javascript • CSS",
-            "text": "Website to Showcase agencies work and skills. It needed to be fully responsive and have low load times. Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. and Javascript for the animations."
+            "text": "Website to showcase agencies work and skills. It needed to be fully responsive and have low load times. Built using Wordpress, PHP, advanced custom fields to allow the client to easily modify content. CSS was preprocessed using SASS and GULP. Javascript for the animations."
         },
         "image": {
             "src": "assets/creative_family.png",
@@ -46,7 +46,7 @@
         "text": {
             "title": "One Soho Place",
             "subTitle": "javascript • CSS • website",
-            "text": "Landing page to provide users with the product and contact information. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
+            "text": "Landing page to provide users with product and contact information. The CSS was preprocessed using SASS and GULP. Javascript library JQuery used for simplicity and speed."
         },
         "image": {
             "src": "assets/one_oxford_st.png",
