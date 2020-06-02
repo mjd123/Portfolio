@@ -24,7 +24,7 @@ const DYNO_URL = 'https://md-port.herokuapp.com/';
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/portfolio/index.html'));
 });
 
 const port = process.env.PORT || 3000;
@@ -32,6 +32,6 @@ app.set('port', port);
 
 //const server = http.createServer(app);
 app.listen(port, () => {
-    console.log('running', path.join(__dirname + '/dist/index.html'));
+    console.log('running', path.join(__dirname + '/dist/portfolio/index.html'));
     wakeDyno(DYNO_URL).start(); // will start once server starts
 });
