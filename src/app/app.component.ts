@@ -11,7 +11,7 @@ export class AppComponent {
     title = 'portfolio';
     resizeObservable$: Observable<any>;
     resizeSubscription$: Subscription;
-    private windowwWidth = window.innerWidth;
+    private windowWidth = window.innerWidth;
 
     ngOnInit() {
         this.resizeObservable$ = fromEvent(window, 'resize');
@@ -22,7 +22,7 @@ export class AppComponent {
                 })
             )
             .subscribe((evt) => {
-                if (this.windowwWidth !== evt) {
+                if (this.windowWidth !== evt) {
                     location.reload();
                 }
             });
