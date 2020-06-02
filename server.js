@@ -3,7 +3,7 @@ const path = require('path');
 const wakeDyno = require('woke-dyno');
 const app = express();
 const DYNO_URL = 'https://md-port.herokuapp.com/';
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
 // // Serve static files....
 // app.use(express.static(__dirname + '/dist/portfolio'));
 
@@ -30,8 +30,8 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3000;
 app.set('port', port);
 
-const server = http.createServer(app);
-server.listen(port, () => {
-    console.log('running');
+//const server = http.createServer(app);
+app.listen(port, () => {
+    console.log('running', path.join(__dirname + '/dist/index.html'));
     wakeDyno(DYNO_URL).start(); // will start once server starts
 });
