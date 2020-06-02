@@ -18,5 +18,5 @@ app.get('/*', function (req, res) {
 app.listen(port, () => {
     console.log(port);
 
-    wakeDyno(DYNO_URL).start(); // will start once server starts
+    // wakeDyno(DYNO_URL).start(); // will start once server starts
 });
