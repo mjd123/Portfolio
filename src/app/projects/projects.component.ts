@@ -127,12 +127,7 @@ export class ProjectsComponent extends CanvasBlob {
                     {
                         scale: 1,
 
-                        x: this.findX(
-                            'right',
-                            0 - this.elementChildren[2].clientWidth - 7.5,
-                            this.elementChildren[2].clientWidth,
-                            15
-                        ),
+                        x: this.findX('right', 0, this.elementChildren[2].clientWidth, 15),
 
                         y: this.findY(
                             this.elementChildren[3].clientHeight +
@@ -159,10 +154,7 @@ export class ProjectsComponent extends CanvasBlob {
 
                         x: this.findX(
                             'left',
-                            0 -
-                                (this.elementChildren[2].clientWidth +
-                                    this.elementChildren[3].clientWidth) -
-                                22.5,
+                            this.elementChildren[2].clientWidth + 20,
                             this.elementChildren[3].clientWidth,
                             15
                         ),
@@ -189,7 +181,9 @@ export class ProjectsComponent extends CanvasBlob {
                             this.width > 900
                                 ? this.width / 2 - this.elementChildren[4].clientWidth - 15
                                 : this.height < 500 && this.width < 850
-                                ? this.width / 2 + 7.5
+                                ? this.elementChildren[2].clientWidth +
+                                  this.elementChildren[3].clientWidth +
+                                  22.5 * 2
                                 : this.width / 2 - this.elementChildren[4].clientWidth + 60 - 30,
                         y: this.findY(0, this.elementChildren[3].clientHeight, 30, 80, 60),
                         overwrite: false,
@@ -208,7 +202,10 @@ export class ProjectsComponent extends CanvasBlob {
 
                         x: this.findX(
                             this.width > 900 ? 'right' : 'left',
-                            this.elementChildren[4].clientWidth + 22.5,
+                            this.elementChildren[4].clientWidth +
+                                this.elementChildren[3].clientWidth +
+                                this.elementChildren[2].clientWidth +
+                                22.5 * 3,
                             0,
                             15
                         ),
@@ -231,7 +228,7 @@ export class ProjectsComponent extends CanvasBlob {
     findX(sideOfScreen, landscapePos, elementWidth?, margin?) {
         //landscape phones
         if (this.width < 850 && this.height < 500) {
-            return this.width / 2 + landscapePos;
+            return 0 + landscapePos;
         }
 
         if (sideOfScreen === 'right') {
@@ -288,7 +285,12 @@ export class ProjectsComponent extends CanvasBlob {
         //container
         new ScrollMagic.Scene({
             triggerElement: '.projects',
-            duration: this.width > 900 ? this.height * 2.1 : this.height * 1.6, // the scene should last for a scroll distance of 100px
+            duration:
+                this.width > 900
+                    ? this.height * 2.1
+                    : this.height < 500
+                    ? this.height * 2.5
+                    : this.height * 1.6, // the scene should last for a scroll distance of 100px
             offset: this.width > 900 ? 550 : this.height / 2, // start this scene after scrolling for 50px
         })
             //.addIndicators()

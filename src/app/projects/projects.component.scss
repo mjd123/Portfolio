@@ -97,6 +97,10 @@
                 align-self: center;
                 margin-bottom: 40px;
             }
+
+            @media only screen and (max-width: 850px) and (orientation: landscape) {
+                overflow: visible;
+            }
         }
         .project-container {
             position: absolute;
@@ -155,10 +159,6 @@
                 align-items: center;
                 flex-direction: column;
                 background-color: $green;
-
-                // @media screen and (max-width: $tablet) {
-                //     opacity: 0;
-                // }
 
                 p {
                     visibility: hidden;
@@ -243,12 +243,16 @@
                 }
 
                 @media only screen and (max-width: 850px) and (orientation: landscape) {
-                    width: 119px;
+                    width: 129px;
 
-                    img {
-                        width: 119px;
-                        height: 140px;
-                    }
+                    // img {
+                    //     width: 119px;
+                    //     height: 140px;
+                    // }
+                }
+
+                @media only screen and (max-width: 600px) and (orientation: landscape) {
+                    width: 89px;
                 }
             }
 
@@ -288,7 +292,11 @@
                 }
 
                 @media only screen and (max-width: 850px) and (orientation: landscape) {
-                    width: 120px;
+                    width: 130px;
+                }
+
+                @media only screen and (max-width: 600px) and (orientation: landscape) {
+                    width: 90px;
                 }
             }
 
@@ -328,7 +336,11 @@
                 }
 
                 @media only screen and (max-width: 850px) and (orientation: landscape) {
-                    width: 143px;
+                    width: 153px;
+                }
+
+                @media only screen and (max-width: 600px) and (orientation: landscape) {
+                    width: 113px;
                 }
             }
 
@@ -403,7 +415,11 @@
                 }
 
                 @media only screen and (max-width: 850px) and (orientation: landscape) {
-                    width: 180px;
+                    width: 190px;
+                }
+
+                @media only screen and (max-width: 600px) and (orientation: landscape) {
+                    width: 150px;
                 }
             }
         }
